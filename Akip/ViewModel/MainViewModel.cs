@@ -12,7 +12,8 @@ namespace Akip
         /// </summary>
         Window MainWindowExample = Application.Current.MainWindow;
 
-        public static ObservableCollection<ConnectionIPProgram> ConnectedButtonCollection { get; set; } 
+        public static ObservableCollection<ConnectedIPButtonDesignModel> ConnectedButtonCollection { get; set; }
+            = new ObservableCollection<ConnectedIPButtonDesignModel>();
 
         private Page _currentPage;
 
@@ -48,6 +49,8 @@ namespace Akip
 
         public MainViewModel()
         {
+            ConnectedButtonCollection.Add( new ConnectedIPButtonDesignModel { ConnectedString = "192.168.0.100" } );
+
             FramePageCollection = new ObservableCollection<Page> {
                 new HomePage(),
                 new JobPage(),
