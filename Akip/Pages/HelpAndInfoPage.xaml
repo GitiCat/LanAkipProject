@@ -1,0 +1,164 @@
+﻿<Page x:Class="Akip.HelpAndInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Akip"
+      mc:Ignorable="d"
+      Title="HelpAndInfoPage"
+      VerticalAlignment="Stretch"
+      HorizontalAlignment="Stretch">
+
+    <Grid>
+        <StackPanel Margin="0 20 0 0">
+            <TextBlock Text="Справка и поддержка"
+                           Style="{StaticResource 2TitleText}"/>
+            <Separator Background="#DCDEDD"/>
+
+            <Grid Margin="0 25 0 15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                           Text="&#xf02d;"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Справка" 
+                               Style="{StaticResource HelpTitleText}"/>
+
+                    <StackPanel Orientation="Horizontal">
+                        
+                        <TextBlock Style="{StaticResource LinkText}">
+                            <Hyperlink local:NavigationService.IsExternal="true">
+                                Открыть справку
+                            </Hyperlink>
+                        </TextBlock>
+                        
+                        <TextBlock Style="{StaticResource LinkText}">
+                            <Hyperlink local:NavigationService.IsExternal="true">
+                                Открыть документацию по оборудованию
+                            </Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+
+            </Grid>
+
+            <Separator Background="#DCDEDD"/>
+
+            <Grid Margin="0 20 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                           Text="&#xf1cd;"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Служба поддержки клиентов" 
+                               Style="{StaticResource HelpTitleText}"/>
+
+                    <TextBlock Style="{StaticResource LinkText}">
+                        <Hyperlink local:NavigationService.IsExternal="true">
+                            Отправить запрос в службу <LineBreak/>поддержки
+                        </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock Text="Связь с разработчиком" 
+                               Style="{StaticResource LowerHelpTitleText}"/>
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="&#xf189;"
+                                   Style="{StaticResource ButtonHelpText}"
+                                   Foreground="#007ACC"/>
+
+                        <TextBlock Text="&#xf230;"
+                                   Style="{StaticResource ButtonHelpText}"
+                                   Foreground="#4867AA"/>
+                        
+                        <TextBlock Text="&#xf17e;"
+                                   Style="{StaticResource ButtonHelpText}"
+                                   Foreground="#00AFF0"/>
+
+                        <TextBlock Text="&#xf098;"
+                                   Style="{StaticResource ButtonHelpText}"
+                                   Foreground="#78CC66"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+
+            <Separator Background="#DCDEDD"/>
+
+            <Grid Margin="0 25 0 15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" 
+                           Text="&#xf06a;"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Сведения о программе и лицензии" 
+                               Style="{StaticResource HelpTitleText}"/>
+
+                    <StackPanel Margin="10 10 0 0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Лицензия: "
+                                       Margin="0"
+                                       Style="{StaticResource LinkText}"/>
+                            <TextBlock Text="..."
+                                       Margin="0 -7 0 0"
+                                       FontSize="18"
+                                       Style="{StaticResource LowerHelpTitleText}" FontFamily="Segoe UI Semibold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Действительность лицензии: "
+                                       Margin="0"
+                                        Style="{StaticResource LinkText}"/>
+                            <TextBlock Text="..."
+                                       Margin="0 -7 0 0"
+                                       FontSize="18"
+                                       Style="{StaticResource LowerHelpTitleText}" FontFamily="Segoe UI Semibold"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                            <TextBlock Text="Версия продукта: "
+                                       Margin="0"
+                                        Style="{StaticResource LinkText}"/>
+                            <TextBlock Text="..."
+                                       Margin="0 -7 0 0"
+                                       FontSize="18"
+                                       Style="{StaticResource LowerHelpTitleText}" FontFamily="Segoe UI Semibold"/>
+                        </StackPanel>
+                        
+                        <TextBlock Style="{StaticResource LinkText}"
+                                   Margin="0">
+                            <Hyperlink local:NavigationService.IsExternal="true">
+                                О программе Akip Control Management
+                            </Hyperlink>
+                        </TextBlock>
+
+                    </StackPanel>
+                    
+                </StackPanel>
+
+            </Grid>
+
+        </StackPanel>
+    </Grid>
+</Page>

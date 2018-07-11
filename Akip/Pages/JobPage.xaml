@@ -1,0 +1,108 @@
+﻿<Page x:Class="Akip.JobPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Akip"
+      mc:Ignorable="d"
+      Title="JobPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Контроль нагрузки"
+                Style="{StaticResource 2TitleText}"/>
+            <Separator Background="#DCDEDD"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Row="0"
+                       Grid.Column="0">
+
+                <TextBlock Text="Параметры текущего этапа" 
+                               Style="{StaticResource HelpTitleText}"
+                           DockPanel.Dock="Top"
+                           Margin="10 10 0 5"/>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="10 0 0 0"
+                            DockPanel.Dock="Top">
+                    <TextBlock Text="Наименование этапа: "
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 5 0 0"/>
+                    <TextBlock Text="none"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="5 5 0 10"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="10 0 0 0"
+                            DockPanel.Dock="Top">
+                    <TextBlock Text="Номер этапа: "
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 5 0 0"/>
+                    <TextBlock Text="none"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="5 5 0 10"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="10 0 0 0"
+                            DockPanel.Dock="Top">
+                    <TextBlock Text="Ток импульса: "
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 5 0 0"/>
+                    <TextBlock Text="none"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="5 5 0 10"/>
+                </StackPanel>
+                
+            </DockPanel>
+
+            <DockPanel Grid.Row="0"
+                       Grid.Column="1">
+                <StackPanel Orientation="Horizontal"
+                            Margin="10 30 0 0"
+                            DockPanel.Dock="Top">
+                    <TextBlock Text="Время этапа: "
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 5 0 0"/>
+                    <TextBlock Text="none"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="5 5 0 10"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="10 0 0 0"
+                            DockPanel.Dock="Top">
+                    <TextBlock Text="Оставшееся время: "
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 5 0 0"/>
+                    <TextBlock Text="none"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="5 5 0 10"/>
+                </StackPanel>
+                
+            </DockPanel>
+            
+        </Grid>
+
+    </Grid>
+    
+</Page>

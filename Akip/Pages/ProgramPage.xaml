@@ -1,0 +1,386 @@
+﻿<Page x:Class="Akip.ProgramPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.fontawesome.com/wpf"
+      xmlns:local="clr-namespace:Akip"
+      mc:Ignorable="d"
+      Title="ProgramPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Создание программы нагрузки"
+                Style="{StaticResource 2TitleText}"/>
+            <Separator Background="#DCDEDD"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0">
+                <Grid Margin="0 25 0 15"
+                      DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                           Text="&#xf196;"
+                           Width="50"
+                           Height="50"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Режим нагрузки" 
+                               Style="{StaticResource HelpTitleText}"/>
+                        <DockPanel>
+                            <RadioButton Content="Постоянный ток (СС)"
+                                     Style="{StaticResource buttonstripe1}"
+                                         DockPanel.Dock="Top"/>
+                            <RadioButton Content="Постоянное сопротивление (CR)"
+                                     Style="{StaticResource buttonstripe1}"
+                                         DockPanel.Dock="Top"/>
+                            <RadioButton Content="Постоянное напряжение (CV)"
+                                     Style="{StaticResource buttonstripe1}"
+                                         DockPanel.Dock="Top"/>
+                            <RadioButton Content="Постоянная мощность (CP)"
+                                     Style="{StaticResource buttonstripe1}"
+                                         DockPanel.Dock="Top"/>
+                        </DockPanel>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Margin="0 10 0 15"
+                      DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                           Text="&#xf181;"
+                           Width="50"
+                           Height="50"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Тип этапа" 
+                               Style="{StaticResource HelpTitleText}"/>
+                        <DockPanel>
+                            <RadioButton Content="Разряд"
+                                     Style="{StaticResource buttonstripe1}"
+                                         DockPanel.Dock="Top"/>
+                            <RadioButton Content="Пауза"
+                                     Style="{StaticResource buttonstripe1}"
+                                         DockPanel.Dock="Top"/>
+                        </DockPanel>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Margin="0 10 0 15"
+                      DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                           Text="&#xf0e7;"
+                           Width="50"
+                           Height="50"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Ток импульса" 
+                               Style="{StaticResource HelpTitleText}"/>
+                        <TextBlock Text="Значение на одном этапе"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8"/>
+                        <DockPanel>
+                            <TextBox Text="00.0000"
+                                Style="{StaticResource MainTextBox}"/>
+                        </DockPanel>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Margin="0 25 0 15"
+                      DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                           Text="&#xf017;"
+                           Width="50"
+                           Height="50"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Время импульса" 
+                               Style="{StaticResource HelpTitleText}"/>
+                        <TextBlock Text="Значение на одном этапе"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8"/>
+                        <DockPanel>
+                            <TextBox Text="00.0000"
+                                     DockPanel.Dock="Top"
+                                     HorizontalAlignment="Left"
+                                Style="{StaticResource MainTextBox}"/>
+                            <TextBlock Text="( Задается в секундах/миллисекундах )"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8"/>
+                        </DockPanel>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Margin="0 25 0 15"
+                      DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                           Text="&#xf0a3;"
+                           Width="50"
+                           Height="50"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Минимальное значение напряжения" 
+                               Style="{StaticResource HelpTitleText}"/>
+                        <TextBlock Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8">
+                            Значение, при котором происходит <LineBreak/>
+                            остановка нагрузки
+                        </TextBlock>
+                        <DockPanel>
+                            <TextBox Text="00.0000"
+                                     DockPanel.Dock="Top"
+                                     HorizontalAlignment="Left"
+                                Style="{StaticResource MainTextBox}"/>
+                            <TextBlock Text="( Задается в Вольтах (U) )"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8"/>
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+
+            </DockPanel>
+
+            <DockPanel Grid.Column="1">
+                <Grid Margin="0 25 0 15"
+                      DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                           Text="&#xf0ca;"
+                           Width="50"
+                           Height="50"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Управление программой" 
+                               Style="{StaticResource HelpTitleText}"/>
+                        <TextBlock Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8">
+                            Редактирование программы нагрузки
+                        </TextBlock>
+                        <DockPanel>
+                            <Button Content="Добавить этап"
+                                    Style="{StaticResource MainButtonStyle}"
+                                    DockPanel.Dock="Top"
+                                    Width="150"
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 3 0 0"/>
+                            <Button Content="Удалить этап"
+                                    Style="{StaticResource MainButtonStyle}"
+                                    DockPanel.Dock="Top"
+                                    Width="150"
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 3 0 0"/>
+                            <Button Content="Очистить таблицу"
+                                    Style="{StaticResource MainButtonStyle}"
+                                    DockPanel.Dock="Top"
+                                    Width="150"
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 3 0 0"/>
+                            <Separator Background="#FF48525B"
+                                       Margin="0 5 0 5"
+                                       Width="200"
+                                       DockPanel.Dock="Top"/>
+                            <Button Content="Импорт"
+                                    Style="{StaticResource MainButtonStyle}"
+                                    DockPanel.Dock="Top"
+                                    Width="110"
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 3 0 0"/>
+                            <TextBlock Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8"
+                                   DockPanel.Dock="Top">
+                                Загружает ранее созданную <LineBreak/> таблицу нагрузки
+                            </TextBlock>
+                            <Button Content="Экспорт"
+                                    Style="{StaticResource MainButtonStyle}"
+                                    DockPanel.Dock="Top"
+                                    Width="110"
+                                    Height="30"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 3 0 0"/>
+                            <TextBlock Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8"
+                                   DockPanel.Dock="Top">
+                                Сохраняет созданную таблицу <LineBreak/> нагрузки
+                            </TextBlock>
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0 25 0 15"
+                      DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                           Text="&#xf148;"
+                           Width="50"
+                           Height="50"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Верхнее значение напряжения" 
+                               Style="{StaticResource HelpTitleText}"/>
+                        <TextBlock Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8">
+                            Предельное верхнее значение <LineBreak/>
+                            нагрузки
+                        </TextBlock>
+                        <DockPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        DockPanel.Dock="Top">
+                                <TextBlock Text="Текущее: "
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 5 0 0"/>
+                                <TextBlock Text="0.0000"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="5 5 0 10"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        DockPanel.Dock="Top">
+                                <TextBox Text="00.0000"
+                                     DockPanel.Dock="Top"
+                                     HorizontalAlignment="Left"
+                                Style="{StaticResource MainTextBox}"
+                                         Width="100"/>
+                                <Button Content="Задать"
+                                        Style="{StaticResource MainButtonStyle}"
+                                        Width="75"
+                                        Height="22"
+                                        Margin="15 0 0 0"/>
+                            </StackPanel>
+
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+
+            </DockPanel>
+
+            <DockPanel Grid.Column="3"
+                       Margin="20 0 0 0"
+                       Width="405"
+                       HorizontalAlignment="Left">
+                <ListView DockPanel.Dock="Top"
+                          Height="490"
+                          VerticalAlignment="Top">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Режим"
+                                            Width="100"/>
+                            <GridViewColumn Header="Время"
+                                            Width="100"/>
+                            <GridViewColumn Header="Ток"
+                                            Width="100"/>
+                            <GridViewColumn Header="Тип"
+                                            Width="100"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="10 10 0 0"
+                            DockPanel.Dock="Top">
+                    <TextBlock Text="Общее число этапов: "
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 5 0 0"/>
+                    <TextBlock Text="0"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="5 5 0 10"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="10 0 0 0"
+                            DockPanel.Dock="Top">
+                    <TextBlock Text="Общее время программы"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 5 0 0"/>
+                    <TextBlock Text="00:00:00.000"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="5 5 0 10"/>
+                </StackPanel>
+
+            </DockPanel>
+
+        </Grid>
+    </Grid>
+</Page>
