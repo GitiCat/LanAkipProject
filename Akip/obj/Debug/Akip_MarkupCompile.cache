@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Dropbox\Startup\Akip\Akip\obj\Debug\
+D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\
 Akip
 none
 false
 DEBUG;TRACE
-D:\Dropbox\Startup\Akip\Akip\App.xaml
-15305922737
+D:\GitHub\Repository\project\LanAkipProject\Akip\App.xaml
+16-1550199327
 
-15347343884
-15-995395573
-MainWindow.xaml;Pages\CommunicationPage.xaml;Pages\HelpAndInfoPage.xaml;Pages\HomePage.xaml;Pages\JobPage.xaml;Pages\ProgramPage.xaml;Pages\SettingPage.xaml;Simple Styles.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\ComboBox.xaml;Styles\DataGrid.xaml;Styles\Fonts.xaml;Styles\RadioButtons.xaml;Styles\TextBox.xaml;
+22496227604
+161859552683
+Controls\ConnectionIPProgram.xaml;MainWindow.xaml;Pages\CommunicationPage.xaml;Pages\HelpAndInfoPage.xaml;Pages\HomePage.xaml;Pages\JobPage.xaml;Pages\ProgramPage.xaml;Pages\SettingPage.xaml;Simple Styles.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\ComboBox.xaml;Styles\DataGrid.xaml;Styles\Fonts.xaml;Styles\RadioButtons.xaml;Styles\TextBox.xaml;
 
 False
 

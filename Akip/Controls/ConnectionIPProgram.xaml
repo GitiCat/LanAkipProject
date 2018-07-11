@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Akip.ConnectionIPProgram"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Akip"
+             mc:Ignorable="d"
+             d:DataContext="{x:Static local:ConnectedIPButtonDesignModel.Instance}">
+    <Grid>
+        <Button Style="{StaticResource SidemenuButtonStyle}"
+                Command="{Binding OpenConnectedIPProgramPage}"
+                Width="150">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xf1e6;"
+                               Style="{StaticResource AwesomeBase}"/>
+                    <TextBlock Text="{Binding ConnectedString}"
+                               Style="{StaticResource SidemenuButtonText}"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>

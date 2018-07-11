@@ -37,6 +37,7 @@
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +62,11 @@
     <Compile Include="AttachedProperty\NavigationService.cs" />
     <Compile Include="Base\Base.cs" />
     <Compile Include="Base\RCommand.cs" />
+    <Compile Include="Base\SingletonBase.cs" />
+    <Compile Include="Controls\ConnectionIPProgram.xaml.cs">
+      <DependentUpon>ConnectionIPProgram.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LanConnectionModel.cs" />
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -73,7 +79,15 @@
     <Compile Include="Pages\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ConnectedIPButtonDesignModel.cs" />
+    <Compile Include="ViewModel\ConnectedIPButtonViewModel.cs" />
+    <Compile Include="ViewModel\ConnectionViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ProgramViewModeDesign.cs" />
+    <Page Include="Controls\ConnectionIPProgram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -177,8 +191,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

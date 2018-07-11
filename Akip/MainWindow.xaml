@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Akip"
         mc:Ignorable="d"
-        Height="661" 
-        Width="899" 
+        Height="761" 
+        Width="1299" 
         WindowStyle="None" 
         ResizeMode="NoResize"
         Background="Transparent"
@@ -160,6 +160,14 @@
                                 </Button.Content>
                             </Button>
 
+                            <ItemsControl ItemsSource="{Binding ConnecedButtonCollection}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            
                             <Separator Margin="0 5 0 5" Foreground="{x:Null}">
                                 <Separator.Background>
                                     <LinearGradientBrush StartPoint="0,0"

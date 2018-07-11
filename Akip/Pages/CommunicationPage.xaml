@@ -6,56 +6,126 @@
       xmlns:local="clr-namespace:Akip"
       mc:Ignorable="d">
 
+    <Page.Resources>
+        <local:ConnectionViewModel x:Key="c_viewmodel"/>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <Binding Source="{StaticResource c_viewmodel}"/>
+    </Page.DataContext>
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <TextBlock Text="Подключение"
-                           Style="{StaticResource 2TitleText}"/>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Настройка соединения"
+                Style="{StaticResource 2TitleText}"/>
             <Separator Background="#DCDEDD"/>
-
-            <TextBlock Text="Выберите адрес для установки соединения "
-                       Style="{StaticResource HelpTitleText}"
-                       Margin="5"/>
-            <ComboBox MaxWidth="200" 
-                      Width="200"
-                      Margin="10 0 0 10"
-                      SelectedIndex="0"
-                      Style="{DynamicResource combo}"
-                      HorizontalAlignment="Left">
-                <ComboBoxItem Content="1"/>
-                <ComboBoxItem Content="2"/>
-                <ComboBoxItem Content="3"/>
-            </ComboBox>
-
-            <Button x:Name="ConnectButton"
-                    Content="Подключиться"
-                    Style="{StaticResource MainButtonStyle}"
-                    Width="130"
-                    Height="30"
-                    HorizontalAlignment="Left"
-                    Margin="10 0 0 10"/>
-
-            <DataGrid Grid.Column="2"
-                  Style="{StaticResource dataGridStyle}"
-                  CanUserAddRows="False"
-                  IsReadOnly="True"
-                  HeadersVisibility="None"
-                  Width="280"
-                  Height="200"
-                  SelectionUnit="FullRow"
-                  GridLinesVisibility="None"
-                  AutoGenerateColumns="False"
-                  ItemsSource="{Binding Path=CollectionOfFoundFiles}"
-                  SelectedIndex="{Binding Path=SelectedOfFoungFiles}" Margin="10 0 0 0">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Width="200" />
-                </DataGrid.Columns>
-            </DataGrid>
-
         </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0">
+                <Grid Margin="0 25 0 15"
+                      DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" 
+                           Text="&#xf126;"
+                           Width="50"
+                           Height="50"
+                           VerticalAlignment="Top"
+                           Style="{StaticResource FontAwesomeTitleText}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Адрес подключения" 
+                               Style="{StaticResource HelpTitleText}"/>
+                        <TextBlock Text="Выберите IP адрес для подключения к оборудованию"
+                                   Style="{StaticResource LinkText}"
+                                   Margin="10 1.5 0 0"
+                                   Foreground="#FFA8A8A8"/>
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top"
+                                        Orientation="Horizontal">
+                                <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
+                                      Margin="10 5 0 0"
+                                      Width="300"
+                                      DockPanel.Dock="Top"
+                                      HorizontalAlignment="Left"
+                                      ItemsSource="{Binding LanCollection}"
+                                      DisplayMemberPath="ConnectionIP"
+                                      SelectedValue="{Binding SelectLanCollection}"/>
+                                <Button Content="&#xf021;"
+                                        FontFamily="{StaticResource FontAwesome}"
+                                        Style="{StaticResource ImageButtonStyle}"
+                                        Width="25"
+                                        Height="25"
+                                        Margin="5 5 0 0"/>
+                            </StackPanel>
+
+                            <Button Content="Подключения"
+                                    Style="{StaticResource MainButtonStyle}"
+                                    Width="100"
+                                    Height="25"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 5 0 0"
+                                    DockPanel.Dock="Top"
+                                    Command="{Binding ConnectionToLan}"/>
+
+                            <TextBlock Text="Активные подключения" 
+                               Style="{StaticResource HelpTitleText}"
+                                       Margin="10 20 0 0"
+                                       DockPanel.Dock="Top"/>
+                            <TextBlock Text="Отображение активных подключений"
+                                       Style="{StaticResource LinkText}"
+                                       Margin="10 1.5 0 0"
+                                       Foreground="#FFA8A8A8"
+                                       DockPanel.Dock="Top"/>
+
+                            <ListView DockPanel.Dock="Top"
+                                      Margin="10 5 0 0"
+                                      Width="200"
+                                      Height="200"
+                                      HorizontalAlignment="Left"
+                                      ItemsSource="{Binding ConnectedIP}"
+                                      SelectedIndex="{Binding ConnectionIPIndex}">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="IP"
+                                                        Width="200"
+                                                        DisplayMemberBinding="{Binding ConnectedIPString}"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                            <Button Content="Прервать соединение"
+                                    Style="{StaticResource MainButtonStyle}"
+                                    Width="200"
+                                    Height="25"
+                                    HorizontalAlignment="Left"
+                                    Margin="10 5 0 0"
+                                    DockPanel.Dock="Top"
+                                    Command="{Binding DisconnectionFromLan}"/>
+                        </DockPanel>
+                    </StackPanel>
+
+                </Grid>
+
+            </DockPanel>
+            
+        </Grid>
+        
     </Grid>
 </Page>
