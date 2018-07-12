@@ -72,7 +72,8 @@
                                         Style="{StaticResource ImageButtonStyle}"
                                         Width="25"
                                         Height="25"
-                                        Margin="5 5 0 0"/>
+                                        Margin="5 5 0 0"
+                                        Command="{Binding UpdateLanCollection}"/>
                             </StackPanel>
 
                             <Button Content="Подключения"
@@ -118,6 +119,7 @@
                                     Margin="10 5 0 0"
                                     DockPanel.Dock="Top"
                                     Command="{Binding DisconnectionFromLan}"/>
+
                         </DockPanel>
                     </StackPanel>
 

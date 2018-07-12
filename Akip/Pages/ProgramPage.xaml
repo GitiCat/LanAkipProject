@@ -6,6 +6,7 @@
       xmlns:fa="http://schemas.fontawesome.com/wpf"
       xmlns:local="clr-namespace:Akip"
       mc:Ignorable="d"
+      d:DataContext="{x:Static local:ProgramDesignModel.Instance}"
       Title="ProgramPage">
 
     <Grid>
@@ -51,16 +52,20 @@
                         <DockPanel>
                             <RadioButton Content="Постоянный ток (СС)"
                                      Style="{StaticResource buttonstripe1}"
-                                         DockPanel.Dock="Top"/>
+                                         DockPanel.Dock="Top"
+                                         IsChecked="{Binding IsCCModeActive}"/>
                             <RadioButton Content="Постоянное сопротивление (CR)"
                                      Style="{StaticResource buttonstripe1}"
-                                         DockPanel.Dock="Top"/>
+                                         DockPanel.Dock="Top"
+                                         IsChecked="{Binding IsCRModeActive}"/>
                             <RadioButton Content="Постоянное напряжение (CV)"
                                      Style="{StaticResource buttonstripe1}"
-                                         DockPanel.Dock="Top"/>
+                                         DockPanel.Dock="Top"
+                                         IsChecked="{Binding IsCVModeActive}"/>
                             <RadioButton Content="Постоянная мощность (CP)"
                                      Style="{StaticResource buttonstripe1}"
-                                         DockPanel.Dock="Top"/>
+                                         DockPanel.Dock="Top"
+                                         IsChecked="{Binding IsCPModeActive}"/>
                         </DockPanel>
                     </StackPanel>
 
@@ -87,10 +92,12 @@
                         <DockPanel>
                             <RadioButton Content="Разряд"
                                      Style="{StaticResource buttonstripe1}"
-                                         DockPanel.Dock="Top"/>
+                                         DockPanel.Dock="Top"
+                                         IsChecked="{Binding IsTypeDischargeActive}"/>
                             <RadioButton Content="Пауза"
                                      Style="{StaticResource buttonstripe1}"
-                                         DockPanel.Dock="Top"/>
+                                         DockPanel.Dock="Top"
+                                         IsChecked="{Binding IsTypePauseActive}"/>
                         </DockPanel>
                     </StackPanel>
 
@@ -119,7 +126,7 @@
                                    Margin="10 1.5 0 0"
                                    Foreground="#FFA8A8A8"/>
                         <DockPanel>
-                            <TextBox Text="00.0000"
+                            <TextBox Text="{Binding Amperage, Converter={local:DoubleToStringValueConverter}, Mode=TwoWay}"
                                 Style="{StaticResource MainTextBox}"/>
                         </DockPanel>
                     </StackPanel>
@@ -149,7 +156,7 @@
                                    Margin="10 1.5 0 0"
                                    Foreground="#FFA8A8A8"/>
                         <DockPanel>
-                            <TextBox Text="00.0000"
+                            <TextBox Text="{Binding PulseTime, Converter={local:DoubleToStringValueConverter}, Mode=TwoWay}"
                                      DockPanel.Dock="Top"
                                      HorizontalAlignment="Left"
                                 Style="{StaticResource MainTextBox}"/>
@@ -187,7 +194,7 @@
                             остановка нагрузки
                         </TextBlock>
                         <DockPanel>
-                            <TextBox Text="00.0000"
+                            <TextBox Text="{Binding MinLoadValue, Mode=TwoWay, Converter={local:DoubleToStringValueConverter}}"
                                      DockPanel.Dock="Top"
                                      HorizontalAlignment="Left"
                                 Style="{StaticResource MainTextBox}"/>
@@ -232,21 +239,24 @@
                                     Width="150"
                                     Height="30"
                                     HorizontalAlignment="Left"
-                                    Margin="10 3 0 0"/>
+                                    Margin="10 3 0 0"
+                                    Command="{Binding AddStage}"/>
                             <Button Content="Удалить этап"
                                     Style="{StaticResource MainButtonStyle}"
                                     DockPanel.Dock="Top"
                                     Width="150"
                                     Height="30"
                                     HorizontalAlignment="Left"
-                                    Margin="10 3 0 0"/>
+                                    Margin="10 3 0 0"
+                                    Command="{Binding DeleteStage}"/>
                             <Button Content="Очистить таблицу"
                                     Style="{StaticResource MainButtonStyle}"
                                     DockPanel.Dock="Top"
                                     Width="150"
                                     Height="30"
                                     HorizontalAlignment="Left"
-                                    Margin="10 3 0 0"/>
+                                    Margin="10 3 0 0"
+                                    Command="{Binding CleanStageTable}"/>
                             <Separator Background="#FF48525B"
                                        Margin="0 5 0 5"
                                        Width="200"
@@ -257,7 +267,8 @@
                                     Width="110"
                                     Height="30"
                                     HorizontalAlignment="Left"
-                                    Margin="10 3 0 0"/>
+                                    Margin="10 3 0 0"
+                                    Command="{Binding ImportStageTable}"/>
                             <TextBlock Style="{StaticResource LinkText}"
                                    Margin="10 1.5 0 0"
                                    Foreground="#FFA8A8A8"
@@ -270,7 +281,8 @@
                                     Width="110"
                                     Height="30"
                                     HorizontalAlignment="Left"
-                                    Margin="10 3 0 0"/>
+                                    Margin="10 3 0 0"
+                                    Command="{Binding ExportStageTable}"/>
                             <TextBlock Style="{StaticResource LinkText}"
                                    Margin="10 1.5 0 0"
                                    Foreground="#FFA8A8A8"
@@ -311,14 +323,14 @@
                                 <TextBlock Text="Текущее: "
                                    Style="{StaticResource LinkText}"
                                    Margin="10 5 0 0"/>
-                                <TextBlock Text="0.0000"
+                                <TextBlock Text="{Binding CurrentUpperValue, Mode=TwoWay, Converter={local:DoubleToStringValueConverter}}"
                                    Style="{StaticResource LinkText}"
                                    Margin="5 5 0 10"/>
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal"
                                         DockPanel.Dock="Top">
-                                <TextBox Text="00.0000"
+                                <TextBox Text="{Binding MaxLoadValue, Mode=TwoWay, Converter={local:DoubleToStringValueConverter}}"
                                      DockPanel.Dock="Top"
                                      HorizontalAlignment="Left"
                                 Style="{StaticResource MainTextBox}"
@@ -327,7 +339,8 @@
                                         Style="{StaticResource MainButtonStyle}"
                                         Width="75"
                                         Height="22"
-                                        Margin="15 0 0 0"/>
+                                        Margin="15 0 0 0"
+                                        Command="{Binding SetMaxLoadValue}"/>
                             </StackPanel>
 
                         </DockPanel>

@@ -13,9 +13,11 @@
             <Button.Content>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xf1e6;"
-                               Style="{StaticResource AwesomeBase}"/>
+                               Style="{StaticResource AwesomeBase}"
+                               FontSize="12"/>
                     <TextBlock Text="{Binding ConnectedString}"
-                               Style="{StaticResource SidemenuButtonText}"/>
+                               Style="{StaticResource SidemenuButtonText}"
+                               FontSize="12"/>
                 </StackPanel>
             </Button.Content>
         </Button>

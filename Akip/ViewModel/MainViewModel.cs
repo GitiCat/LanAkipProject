@@ -7,13 +7,14 @@ namespace Akip
 {
     public class MainViewModel : Base
     {
+        public static MainViewModel Instance => new MainViewModel();
+
         /// <summary>
         ///     Ссылка на экземпляр окна <see cref="MainWindow"/>
         /// </summary>
         Window MainWindowExample = Application.Current.MainWindow;
 
-        public static ObservableCollection<ConnectedIPButtonDesignModel> ConnectedButtonCollection { get; set; }
-            = new ObservableCollection<ConnectedIPButtonDesignModel>();
+        public static ObservableCollection<ConnectedIPButtonViewModel> ConnectedButtonCollection { get; set; }
 
         private Page _currentPage;
 
@@ -45,16 +46,17 @@ namespace Akip
         public ICommand OpenSettingPage { get; set; }
 
         private ObservableCollection<Page> FramePageCollection;
+        public ObservableCollection<Page> ConnectionIpPage { get; set; } 
+            = new ObservableCollection<Page>();
         #endregion 
 
         public MainViewModel()
         {
-            ConnectedButtonCollection.Add( new ConnectedIPButtonDesignModel { ConnectedString = "192.168.0.100" } );
-
+            ConnectedButtonCollection = new ObservableCollection<ConnectedIPButtonViewModel>();
+            ConnectedPage.ConnectedPageCollection = new ObservableCollection<ConnectedPage>();
             FramePageCollection = new ObservableCollection<Page> {
                 new HomePage(),
                 new JobPage(),
-                new ProgramPage(),
                 new CommunicationPage(),
                 new HelpAndInfoPage(),
                 new SettingPage()
@@ -89,25 +91,55 @@ namespace Akip
             #region Создание команд для управления меню приложения
             OpenHomePage = new RCommand( () => {
                 CurrentPage = FramePageCollection[0];
+                IoC.Get<CollectionViewModels>().CurrentPage = FramePageCollection[0];
             } );
             OpenJobPage = new RCommand( () => {
                 CurrentPage = FramePageCollection[1];
+                IoC.Get<CollectionViewModels>().CurrentPage = FramePageCollection[1];
             } );
             OpenProgramPage = new RCommand( () => {
-                CurrentPage = FramePageCollection[2];
+                //CurrentPage = FramePageCollection[];
             } );
             OpenConnecitonPage = new RCommand( () => {
-                CurrentPage = FramePageCollection[3];
+                CurrentPage = FramePageCollection[2];
+                IoC.Get<CollectionViewModels>().CurrentPage = FramePageCollection[2];
             } );
             OpenInfoPage = new RCommand( () => {
-                CurrentPage = FramePageCollection[4];
+                CurrentPage = FramePageCollection[3];
+                IoC.Get<CollectionViewModels>().CurrentPage = FramePageCollection[3];
             } );
             OpenSettingPage = new RCommand( () => {
-                CurrentPage = FramePageCollection[5];
+                CurrentPage = FramePageCollection[4];
+                IoC.Get<CollectionViewModels>().CurrentPage = FramePageCollection[4];
             } );
             #endregion
 
             CurrentPage = new CommunicationPage();
         }
+    }
+
+    public class ConnectedPage : Base
+    {
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set {
+                _name = value;
+                OnPropertyChanged( nameof( Name ) );
+            }
+        }
+
+        private Page _refPage;
+        public Page RefPage
+        {
+            get { return _refPage; }
+            set {
+                _refPage = value;
+                OnPropertyChanged( nameof( RefPage ) );
+            }
+        }
+
+        public static ObservableCollection<ConnectedPage> ConnectedPageCollection { get; set; }
     }
 }

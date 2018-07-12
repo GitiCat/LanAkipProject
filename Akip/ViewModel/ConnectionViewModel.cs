@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Akip
@@ -18,29 +21,31 @@ namespace Akip
             get { return _connectionIPIndex; }
             set { _connectionIPIndex = value; OnPropertyChanged( nameof( ConnectionIPIndex ) ); }
         }
+
         public ObservableCollection<ConnectionViewModel> ConnectedIP { get; set; }
         private List<TcpClient> TcpClientColleciton { get; set; }
         private List<NetworkStream> NetworkStreamCollection { get; set; }
 
         public ObservableCollection<LanConnectionModel> LanCollection { get; set; }
         public LanConnectionModel SelectLanCollection { get; set; }
-
+        
+        public ICommand UpdateLanCollection { get; set; }
         public ICommand ConnectionToLan { get; set; }
         public ICommand DisconnectionFromLan { get; set; }
-
         public ICommand RemoteLan { get; set; }
         public ICommand LocalLan { get; set; }
 
         public ConnectionViewModel()
         {
             ConnectedIP = new ObservableCollection<ConnectionViewModel>();
+
             TcpClientColleciton = new List<TcpClient>();
             NetworkStreamCollection = new List<NetworkStream>();
 
-            LanCollection = LanConnectionModel.Instance.GetLanCollection();
-            if(LanCollection.Count != 0) {
-                SelectLanCollection = LanCollection[0];
-            }
+            M_UpdateLanConnection();
+            UpdateLanCollection = new RCommand( () => {
+                M_UpdateLanConnection();
+            } );
 
             ConnectionToLan = new RCommand( () => {
                 string ip = SelectLanCollection.ConnectionIP;
@@ -49,26 +54,16 @@ namespace Akip
                 ip = null;
             } );
             DisconnectionFromLan = new RCommand( () => { DisconnectionMethod(); } );
-
-            RemoteLan = new RCommand( () => {
-                byte[] res_b = Encoding.ASCII.GetBytes( "REMOTE;" );
-                int count = NetworkStreamCollection.Count;
-
-                for (int i = 0; i < count; i++) {
-                    NetworkStreamCollection[i].Write( res_b, 0, res_b.Length );
-                }
-            } );
-
-            LocalLan = new RCommand( () => {
-                byte[] res_b = Encoding.ASCII.GetBytes( "LOCAL;" );
-                int count = NetworkStreamCollection.Count;
-
-                for (int i = 0; i < count; i++) {
-                    NetworkStreamCollection[i].Write( res_b, 0, res_b.Length );
-                }
-            } );
         }
 
+        private void M_UpdateLanConnection()
+        {
+            LanCollection = LanConnectionModel.Instance.GetLanCollection();
+            if (LanCollection.Count != 0) {
+                SelectLanCollection = LanCollection[0];
+            }
+        }
+        
         private TcpClient ObjTcpConnect = null;
 
         private void ConnectionMethod(string ip, int port)
@@ -77,7 +72,7 @@ namespace Akip
                 ObjTcpConnect = new TcpClient();
 
             if(ObjTcpConnect.Connected) {
-                MessageBox.Show( $"Соединение с {ObjTcpConnect.Client} уже установлено..." );
+                MessageBox.Show( $"Соединение с {ip} уже установлено..." );
                 return;
             }
 
@@ -90,12 +85,29 @@ namespace Akip
                 return;
             } finally {
                 if (ObjTcpConnect.Connected) {
+
                     ConnectedIP.Add( new ConnectionViewModel() {
                         ConnectedIPString = ip
                     } );
+
                     TcpClientColleciton.Add( ObjTcpConnect );
                     NetworkStreamCollection.Add( ObjTcpConnect.GetStream() );
-                    
+
+                    ConnectedPage.ConnectedPageCollection.Add( new ConnectedPage() {
+                        Name = ip,
+                        RefPage = new ProgramPage()
+                    } );
+
+                    MainViewModel.ConnectedButtonCollection.Add(
+                        new ConnectedIPButtonViewModel {
+                            ConnectedString = ip,
+                            OpenConnectedIPProgramPage = new RCommand( () => {
+                                var target = ConnectedPage.ConnectedPageCollection
+                                    .Where( x => x.Name == ip ).FirstOrDefault() as ConnectedPage;
+                                IoC.Get<CollectionViewModels>().CurrentPage 
+                                    = ConnectedPage.ConnectedPageCollection[ConnectedPage.ConnectedPageCollection.IndexOf( target )].RefPage;
+                            } )
+                        } );
                 }
             }
         }
@@ -105,8 +117,7 @@ namespace Akip
             if (TcpClientColleciton[ConnectionIPIndex].Connected) {
                 NetworkStreamCollection[ConnectionIPIndex].Close();
                 TcpClientColleciton[ConnectionIPIndex].Close();
-
-                TcpClientColleciton[ConnectionIPIndex].Dispose();
+                
                 TcpClientColleciton[ConnectionIPIndex] = null;
                 TcpClientColleciton.RemoveAt( ConnectionIPIndex );
 
@@ -114,6 +125,7 @@ namespace Akip
                 NetworkStreamCollection[ConnectionIPIndex] = null;
                 NetworkStreamCollection.RemoveAt( ConnectionIPIndex );
 
+                MainViewModel.ConnectedButtonCollection.RemoveAt( ConnectionIPIndex );
                 ConnectedIP.RemoveAt( ConnectionIPIndex );
             }
         }

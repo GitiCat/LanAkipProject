@@ -21,6 +21,7 @@
         <Binding Source="{StaticResource MainViewModelClass}"/>
     </Window.DataContext>
     
+
     <WindowChrome.WindowChrome>
         <WindowChrome ResizeBorderThickness="10"
                       CaptionHeight="35"
@@ -136,7 +137,8 @@
                             </Button>
 
                             <Button Style="{StaticResource SidemenuButtonStyle}"
-                                    Command="{Binding OpenProgramPage}">
+                                    Command="{Binding OpenProgramPage}"
+                                    IsEnabled="False">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="&#xf0ce;" 
@@ -146,6 +148,19 @@
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
+
+                            <ItemsControl ItemsSource="{Binding ConnectedButtonCollection}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Margin="0"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <local:ConnectionIPProgram />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
 
                             <Button Style="{StaticResource SidemenuButtonStyle}"
                                     Command="{Binding OpenConnecitonPage}">
@@ -160,14 +175,6 @@
                                 </Button.Content>
                             </Button>
 
-                            <ItemsControl ItemsSource="{Binding ConnecedButtonCollection}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                            
                             <Separator Margin="0 5 0 5" Foreground="{x:Null}">
                                 <Separator.Background>
                                     <LinearGradientBrush StartPoint="0,0"
@@ -219,7 +226,8 @@
                 </Grid>
 
                 <Frame Grid.Column="1"
-                       Content="{Binding CurrentPage}"
+                       Content="{Binding CollectionViewModels.CurrentPage,
+                            Source={x:Static local:ViewModelLocation.Instance}}"
                        NavigationUIVisibility="Hidden"/>
 
             </Grid>
