@@ -355,17 +355,25 @@
                        HorizontalAlignment="Left">
                 <ListView DockPanel.Dock="Top"
                           Height="490"
-                          VerticalAlignment="Top">
+                          VerticalAlignment="Top"
+                          ItemsSource="{Binding StageCollection}"
+                          SelectedIndex="{Binding SelectedIndexStageCollection, 
+                            Mode=TwoWay,
+                            UpdateSourceTrigger=PropertyChanged}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Режим"
-                                            Width="100"/>
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding NameMode}"/>
                             <GridViewColumn Header="Время"
-                                            Width="100"/>
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding NameType}"/>
                             <GridViewColumn Header="Ток"
-                                            Width="100"/>
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding AmperageValue}"/>
                             <GridViewColumn Header="Тип"
-                                            Width="100"/>
+                                            Width="100"
+                                            DisplayMemberBinding="{Binding TimeValue}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

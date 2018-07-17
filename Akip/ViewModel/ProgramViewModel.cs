@@ -1,4 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Akip
 {
@@ -6,42 +8,42 @@ namespace Akip
     {
         // --------- Определение активных модулей----*
         private bool _isCC;
-        public bool IsCCModeActive
+        internal bool IsCCModeActive
         {
             get { return _isCC; }
             set { _isCC = value; OnPropertyChanged( nameof( IsCCModeActive ) ); }
         }
 
         private bool _isCR;
-        public bool IsCRModeActive
+        internal bool IsCRModeActive
         {
             get { return _isCR; }
             set { _isCR = value; OnPropertyChanged( nameof( IsCRModeActive ) ); }
         }
 
         private bool _isCV;
-        public bool IsCVModeActive
+        internal bool IsCVModeActive
         {
             get { return _isCV; }
             set { _isCV = value; OnPropertyChanged( nameof( IsCVModeActive ) );  }
         }
 
         private bool _isCP;
-        public bool IsCPModeActive
+        internal bool IsCPModeActive
         {
             get { return _isCP; }
             set { _isCP = value; OnPropertyChanged( nameof( IsCPModeActive ) ); }
         }
 
         private bool _IsTypeDischarge;
-        public bool IsTypeDischargeActive
+        internal bool IsTypeDischargeActive
         {
             get { return _IsTypeDischarge; }
             set { _IsTypeDischarge = value; OnPropertyChanged( nameof( IsTypeDischargeActive ) ); }
         }
 
         private bool _isTypePauseActive;
-        public bool IsTypePauseActive
+        internal bool IsTypePauseActive
         {
             get { return _isTypePauseActive; }
             set { _isTypePauseActive = value; OnPropertyChanged( nameof( IsTypeDischargeActive ) ); }
@@ -64,5 +66,19 @@ namespace Akip
         internal string TotalNumberStage { get; set; }
         internal string TotalProgramTime { get; set; }
 
+        // ---------- Определение коллекций----*
+        internal string NameMode { get; set; }
+        internal string NameType { get; set; }
+        internal float AmperageValue { get; set; }
+        internal TimeSpan TimeValue { get; set; }
+
+        private ObservableCollection<ProgramViewModel> _stageCollection;
+        internal ObservableCollection<ProgramViewModel> StageCollection
+        {
+            get { return _stageCollection; }
+            set { _stageCollection = value;
+                OnPropertyChanged( nameof( StageCollection ) );
+            }
+        }
     }
 }
