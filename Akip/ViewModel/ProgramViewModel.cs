@@ -53,7 +53,7 @@ namespace Akip
         internal ICommand AddStage { get; set; }
         internal ICommand DeleteStage { get; set; }
         internal ICommand CleanStageTable { get; set; }
-        internal ICommand ImportStageTable { get; set; }
+        public ICommand ImportStageTable { get; set; }
         internal ICommand ExportStageTable { get; set; }
         internal ICommand SetMaxLoadValue { get; set; }
 

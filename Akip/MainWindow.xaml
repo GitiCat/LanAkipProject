@@ -162,6 +162,21 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
+                            <ListView ItemsSource="{Binding ConnectedButtonCollection}"
+                                      SelectedIndex="{Binding ConnectionViewModel.SelectedIndexCButtonCollection,
+                                Source={x:Static local:ViewModelLocation.Instance}}">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <local:ConnectionIPProgram/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
                             <Button Style="{StaticResource SidemenuButtonStyle}"
                                     Command="{Binding OpenConnecitonPage}">
                                 <Button.Content>

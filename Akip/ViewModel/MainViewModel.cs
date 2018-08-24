@@ -14,6 +14,7 @@ namespace Akip
         /// </summary>
         Window MainWindowExample = Application.Current.MainWindow;
 
+
         public static ObservableCollection<ConnectedIPButtonViewModel> ConnectedButtonCollection { get; set; }
 
         private Page _currentPage;

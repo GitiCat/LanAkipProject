@@ -22,9 +22,11 @@ namespace Akip
             set { _connectionIPIndex = value; OnPropertyChanged( nameof( ConnectionIPIndex ) ); }
         }
 
+
+
         public ObservableCollection<ConnectionViewModel> ConnectedIP { get; set; }
         private List<TcpClient> TcpClientColleciton { get; set; }
-        public static List<NetworkStream> NetworkStreamCollection { get; set; }
+        public List<NetworkStream> NetworkStreamCollection { get; set; }
 
         public ObservableCollection<LanConnectionModel> LanCollection { get; set; }
         public LanConnectionModel SelectLanCollection { get; set; }

@@ -27,7 +27,7 @@ namespace Akip
             AddStage = new RCommand( () => { M_AddStage(); } );
             DeleteStage = new RCommand( () => { M_DeleteStage(); } );
             CleanStageTable = new RCommand( () => { M_CreanStageTable(); } );
-            ImportStageTable = new RCommand( () => { } );
+            ImportStageTable = new RCommand( () => { M_ImportStageTable(); } );
             ExportStageTable = new RCommand( () => { } );
             SetMaxLoadValue = new RCommand( () => { } );
         }
@@ -161,7 +161,7 @@ namespace Akip
 
         private void M_ImportStageTable()
         {
-
+            MessageBox.Show( IoC.Get<CollectionViewModels>().SelectedIndexCButtonCollection.ToString() );
         }
 
         private void M_ExportStageTable()

@@ -21,5 +21,15 @@ namespace Akip
                 OnPropertyChanged( nameof( CurrentPage ) );
             }
         }
+
+        private int _selectedIndexCButtonCollection;
+        public int SelectedIndexCButtonCollection
+        {
+            get { return _selectedIndexCButtonCollection; }
+            set {
+                _selectedIndexCButtonCollection = value;
+                OnPropertyChanged( nameof( SelectedIndexCButtonCollection ) );
+            }
+        }
     }
 }

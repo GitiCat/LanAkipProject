@@ -145,6 +145,7 @@
         <Setter Property="FontFamily" Value="Microsoft Sans Serif"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Foreground" Value="#FF48525B"/>
+        <Setter Property="Command" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type Button}}, Path=PlacementTarget.DataContext.TheCommand}"/>
 
         <Setter Property="Template">
             <Setter.Value>
