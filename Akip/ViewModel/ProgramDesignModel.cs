@@ -8,8 +8,6 @@ namespace Akip
 {
     public class ProgramDesignModel : ProgramViewModel
     {
-        public static ProgramDesignModel Instance => new ProgramDesignModel();
-
         private int _selectedIndexStageCollection;
         public int SelectedIndexStageCollection
         {
@@ -18,18 +16,17 @@ namespace Akip
                 OnPropertyChanged( nameof( SelectedIndexStageCollection ) );
             }
         }
-
-
+        
         public ProgramDesignModel()
         {
             StageCollection = new ObservableCollection<ProgramViewModel>();
 
-            AddStage = new RCommand( () => { M_AddStage(); } );
-            DeleteStage = new RCommand( () => { M_DeleteStage(); } );
-            CleanStageTable = new RCommand( () => { M_CreanStageTable(); } );
-            ImportStageTable = new RCommand( () => { M_ImportStageTable(); } );
-            ExportStageTable = new RCommand( () => { } );
-            SetMaxLoadValue = new RCommand( () => { } );
+            AddStage = new RCommand(() => { M_AddStage(); });
+            DeleteStage = new RCommand(() => { M_DeleteStage(); });
+            CleanStageTable = new RCommand(() => { M_CreanStageTable(); });
+            ImportStageTable = new RCommand(() => { M_ImportStageTable(); });
+            ExportStageTable = new RCommand(() => { MessageBox.Show("Экспорт работает"); });
+            SetMaxLoadValue = new RCommand(() => { MessageBox.Show("Макс велью тоже пашет"); });
         }
 
         private string Temp_NameModeActive = null;

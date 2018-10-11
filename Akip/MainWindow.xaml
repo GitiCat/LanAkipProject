@@ -2,228 +2,173 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Akip"
-        mc:Ignorable="d"
-        Height="761" 
-        Width="1299" 
-        WindowStyle="None" 
-        ResizeMode="NoResize"
-        Background="Transparent"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Width="1299"
+        Height="761"
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen">
+        Background="Transparent"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        mc:Ignorable="d">
 
     <Window.Resources>
-        <local:MainViewModel x:Key="MainViewModelClass"/>
+        <local:MainViewModel x:Key="MainViewModelClass" />
     </Window.Resources>
-    
+
     <Window.DataContext>
-        <Binding Source="{StaticResource MainViewModelClass}"/>
+        <Binding Source="{StaticResource MainViewModelClass}" />
     </Window.DataContext>
-    
+
 
     <WindowChrome.WindowChrome>
-        <WindowChrome ResizeBorderThickness="10"
-                      CaptionHeight="35"
+        <WindowChrome CaptionHeight="35"
                       CornerRadius="0"
-                      GlassFrameThickness="0"/>
+                      GlassFrameThickness="0"
+                      ResizeBorderThickness="10" />
     </WindowChrome.WindowChrome>
 
-    <Border Background="White"
-            BorderBrush="#8FC644"
-            BorderThickness="2">
+    <Border Background="White" BorderBrush="#8FC644" BorderThickness="2">
         <Border.Effect>
-            <DropShadowEffect/>
+            <DropShadowEffect />
         </Border.Effect>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="35"/>
-                <RowDefinition/>
-                <RowDefinition Height="35"/>
+                <RowDefinition Height="35" />
+                <RowDefinition />
+                <RowDefinition Height="35" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
-                <Viewbox Grid.Column="1"
-                         VerticalAlignment="Center"
-                         HorizontalAlignment="Left">
-                    <TextBlock Text="Akip Control Management"
-                           FontFamily="Segoe UI Light" 
-                           FontSize="16" Foreground="#FFC9C9C9"
-                           Height="30"
-                           Margin="10 0 0 0"
-                           SnapsToDevicePixels="True"/>
+                <Viewbox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Height="30"
+                               Margin="10,0,0,0"
+                               FontFamily="Segoe UI Light"
+                               FontSize="16"
+                               Foreground="#FFC9C9C9"
+                               SnapsToDevicePixels="True"
+                               Text="Akip Control Management" />
 
                 </Viewbox>
 
-                <StackPanel Orientation="Horizontal"
-                            Grid.Column="2">
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
                     <Button Content="&#xf003;"
-                            Style="{StaticResource WindowMailButton}"
+                            FontFamily="{StaticResource FontAwesome}"
                             FontSize="16"
-                            FontFamily="{StaticResource FontAwesome}"/>
-                    <Button Content="_"
-                            Style="{StaticResource WindowControlButton}"
-                            Command="{Binding Hidden}"/>
-                    <Button Content="[ ]"
-                            Style="{StaticResource WindowControlButton}"
-                            Command="{Binding Resize}"/>
-                    <Button Content="X"
-                            Style="{StaticResource WindowCloseButton}"
-                            Command="{Binding Exit}"/>
+                            Style="{StaticResource WindowMailButton}" />
+                    <Button Command="{Binding Hidden}" Content="_" Style="{StaticResource WindowControlButton}" />
+                    <Button Command="{Binding Resize}" Content="[ ]" Style="{StaticResource WindowControlButton}" />
+                    <Button Command="{Binding Exit}" Content="X" Style="{StaticResource WindowCloseButton}" />
                 </StackPanel>
             </Grid>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
 
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="*" />
 
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
 
-                    <Border Padding="0 40 0 0" Grid.Row="0">
+                    <Border Grid.Row="0" Padding="0,40,0,0">
                         <StackPanel>
-                            <Button Style="{StaticResource SidemenuButtonStyle}"
-                                    Command="{Binding OpenHomePage}">
+                            <Button Command="{Binding OpenHomePage}" Style="{StaticResource SidemenuButtonStyle}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="&#xf015;" 
-                                               Style="{StaticResource AwesomeBase}"/>
-                                        <TextBlock Text="Домашная страница"
-                                               Style="{StaticResource SidemenuButtonText}"/>
-                                        <TextBlock Text="1"
-                                               Visibility="{Binding}"
-                                               Style="{StaticResource HomeMessageText}"/>
+                                        <TextBlock Style="{StaticResource AwesomeBase}" Text="&#xf015;" />
+                                        <TextBlock Style="{StaticResource SidemenuButtonText}" Text="Домашная страница" />
+                                        <TextBlock Style="{StaticResource HomeMessageText}" Text="1" Visibility="{Binding}" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
 
-                            <Separator Margin="0 5 0 5" Foreground="{x:Null}">
+                            <Separator Margin="0,5,0,5" Foreground="{x:Null}">
                                 <Separator.Background>
-                                    <LinearGradientBrush StartPoint="0,0"
-                                                     EndPoint="1,0">
-                                        <GradientStop Offset="0.0"
-                                                  Color="#FFFFFF"/>
-                                        <GradientStop Offset="0.5"
-                                                  Color="#FFE8E8E8"/>
-                                        <GradientStop Offset="1.0"
-                                                  Color="#FFFFFF"/>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Offset="0.0" Color="#FFFFFF" />
+                                        <GradientStop Offset="0.5" Color="#FFE8E8E8" />
+                                        <GradientStop Offset="1.0" Color="#FFFFFF" />
                                     </LinearGradientBrush>
                                 </Separator.Background>
                             </Separator>
 
-                            <Button Style="{StaticResource SidemenuButtonStyle}"
-                                    Command="{Binding OpenJobPage}">
+                            <Button Command="{Binding OpenJobPage}" Style="{StaticResource SidemenuButtonStyle}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="&#xf080;" 
-                                               Style="{StaticResource AwesomeBase}"/>
-                                        <TextBlock Text="Работа"
-                                               Style="{StaticResource SidemenuButtonText}"/>
+                                        <TextBlock Style="{StaticResource AwesomeBase}" Text="&#xf080;" />
+                                        <TextBlock Style="{StaticResource SidemenuButtonText}" Text="Работа" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
 
-                            <Button Style="{StaticResource SidemenuButtonStyle}"
-                                    Command="{Binding OpenProgramPage}"
-                                    IsEnabled="False">
+                            <Button Command="{Binding OpenProgramPage}" IsEnabled="False" Style="{StaticResource SidemenuButtonStyle}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="&#xf0ce;" 
-                                               Style="{StaticResource AwesomeBase}"/>
-                                        <TextBlock Text="Программа"
-                                               Style="{StaticResource SidemenuButtonText}"/>
+                                        <TextBlock Style="{StaticResource AwesomeBase}" Text="&#xf0ce;" />
+                                        <TextBlock Style="{StaticResource SidemenuButtonText}" Text="Программа" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
 
-                            <ItemsControl ItemsSource="{Binding ConnectedButtonCollection}">
+                            <ItemsControl ItemsSource="{Binding ConnectedButtonCollection, UpdateSourceTrigger=PropertyChanged}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel Margin="0"/>
+                                        <StackPanel Margin="0" />
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <local:ConnectionIPProgram/>
+                                        <local:ConnectionIPProgram />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
-                            <ListView ItemsSource="{Binding ConnectedButtonCollection}"
-                                      SelectedIndex="{Binding ConnectionViewModel.SelectedIndexCButtonCollection,
-                                Source={x:Static local:ViewModelLocation.Instance}}">
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel/>
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <local:ConnectionIPProgram/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-
-                            <Button Style="{StaticResource SidemenuButtonStyle}"
-                                    Command="{Binding OpenConnecitonPage}">
+                            <Button Command="{Binding OpenConnecitonPage}" Style="{StaticResource SidemenuButtonStyle}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="&#xf287;" 
-                                               Margin="5 0 9 0"
-                                               Style="{StaticResource AwesomeBase}"/>
-                                        <TextBlock Text="Коммуникация"
-                                               Style="{StaticResource SidemenuButtonText}"/>
+                                        <TextBlock Margin="5,0,9,0" Style="{StaticResource AwesomeBase}" Text="&#xf287;" />
+                                        <TextBlock Style="{StaticResource SidemenuButtonText}" Text="Коммуникация" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
 
-                            <Separator Margin="0 5 0 5" Foreground="{x:Null}">
+                            <Separator Margin="0,5,0,5" Foreground="{x:Null}">
                                 <Separator.Background>
-                                    <LinearGradientBrush StartPoint="0,0"
-                                                     EndPoint="1,0">
-                                        <GradientStop Offset="0.0"
-                                                  Color="#FFFFFF"/>
-                                        <GradientStop Offset="0.5"
-                                                  Color="#FFE8E8E8"/>
-                                        <GradientStop Offset="1.0"
-                                                  Color="#FFFFFF"/>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Offset="0.0" Color="#FFFFFF" />
+                                        <GradientStop Offset="0.5" Color="#FFE8E8E8" />
+                                        <GradientStop Offset="1.0" Color="#FFFFFF" />
                                     </LinearGradientBrush>
                                 </Separator.Background>
                             </Separator>
 
-                            <Button Style="{StaticResource SidemenuButtonStyle}"
-                                    Command="{Binding OpenInfoPage}">
+                            <Button Command="{Binding OpenInfoPage}" Style="{StaticResource SidemenuButtonStyle}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="&#xf05a;"
-                                               Style="{StaticResource AwesomeBase}"/>
-                                        <TextBlock Text="Справка и поддержка"
-                                               Style="{StaticResource SidemenuButtonText}"/>
+                                        <TextBlock Style="{StaticResource AwesomeBase}" Text="&#xf05a;" />
+                                        <TextBlock Style="{StaticResource SidemenuButtonText}" Text="Справка и поддержка" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
 
-                            <Button Style="{StaticResource SidemenuButtonStyle}"
-                                    Command="{Binding OpenSettingPage}">
+                            <Button Command="{Binding OpenSettingPage}" Style="{StaticResource SidemenuButtonStyle}">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="&#xf013;"
-                                               Style="{StaticResource AwesomeBase}"/>
-                                        <TextBlock Text="Настройки"
-                                               Style="{StaticResource SidemenuButtonText}"/>
+                                        <TextBlock Style="{StaticResource AwesomeBase}" Text="&#xf013;" />
+                                        <TextBlock Style="{StaticResource SidemenuButtonText}" Text="Настройки" />
                                     </StackPanel>
                                 </Button.Content>
                             </Button>
@@ -231,22 +176,19 @@
                     </Border>
 
                     <TextBlock Grid.Row="1"
-                               Text="Alternative energy research and production complex"
-                               TextWrapping="Wrap"
-                               Margin="20 10 25 0"
-                               Foreground="#999999" 
+                               Margin="20,10,25,0"
                                FontFamily="Mongolian Baiti"
-                               FontSize="13"/>
+                               FontSize="13"
+                               Foreground="#999999"
+                               Text="Alternative energy research and production complex"
+                               TextWrapping="Wrap" />
 
                 </Grid>
 
-                <Frame Grid.Column="1"
-                       Content="{Binding CollectionViewModels.CurrentPage,
-                            Source={x:Static local:ViewModelLocation.Instance}}"
-                       NavigationUIVisibility="Hidden"/>
+                <Frame Grid.Column="1" Content="{Binding CollectionViewModels.CurrentPage, Source={x:Static local:ViewModelLocation.Instance}}" NavigationUIVisibility="Hidden" />
 
             </Grid>
-            <Grid Grid.Row="2" Background="#E4E4E4"/>
+            <Grid Grid.Row="2" Background="#E4E4E4" />
 
         </Grid>
     </Border>

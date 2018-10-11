@@ -7,9 +7,10 @@ namespace Akip
     /// </summary>
     public partial class ProgramPage : Page
     {
-        public ProgramPage()
+        public ProgramPage(ProgramDesignModel designModel)
         {
             InitializeComponent();
+            DataContext = designModel;
         }
     }
 }
