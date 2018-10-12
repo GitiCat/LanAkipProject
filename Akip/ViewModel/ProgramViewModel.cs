@@ -9,6 +9,8 @@ namespace Akip
 {
     public class ProgramViewModel : Base
     {
+        #region Режимы нагрузки
+
         public bool IsCCModeActive
         {
             get { return (bool)GetValue(IsCCModeActiveProperty); }
@@ -20,7 +22,6 @@ namespace Akip
                 typeof(bool),
                 typeof(ProgramViewModel), 
                 new UIPropertyMetadata(false));
-
         
         public bool IsCRModeActive
         {
@@ -34,36 +35,60 @@ namespace Akip
                 typeof(ProgramViewModel), 
                 new UIPropertyMetadata(false));
 
-        //TODO: Дописать оставшиеся параметры bool с DependencyProperty
+        public bool IsCVModeActive
+        {
+            get { return (bool)GetValue(IsCVModeActiveProperty); }
+            set { SetValue(IsCVModeActiveProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsCVModeActiveProperty =
+            DependencyProperty.Register("IsCVModeActive", 
+                typeof(bool),
+                typeof(ProgramViewModel),
+                new UIPropertyMetadata(false));
+
+        public bool IsCPModeActive
+        {
+            get { return (bool)GetValue(IsCPModeActiveProperty); }
+            set { SetValue(IsCPModeActiveProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsCPModeActiveProperty =
+            DependencyProperty.Register("IsCPModeActive",
+                typeof(bool),
+                typeof(ProgramViewModel),
+                new UIPropertyMetadata(false));
+
+        #endregion
+
+        #region Тип этапа
+
+        public bool IsTypeDischargeActive
+        {
+            get { return (bool)GetValue(IsTypeDischargeActiveProperty); }
+            set { SetValue(IsTypeDischargeActiveProperty, value); }
+        }
+
+        public static readonly DependencyProperty IsTypeDischargeActiveProperty =
+            DependencyProperty.Register("IsTypeDischargeActive", 
+                typeof(bool), 
+                typeof(ProgramViewModel), 
+                new UIPropertyMetadata(false));
         
-        private bool _isCV;
-        internal bool IsCVModeActive
+        public bool IsTypePauseActive
         {
-            get { return _isCV; }
-            set { _isCV = value; OnPropertyChanged( nameof( IsCVModeActive ) );  }
+            get { return (bool)GetValue(IsTypePauseActiveProperty); }
+            set { SetValue(IsTypePauseActiveProperty, value); }
         }
 
-        private bool _isCP;
-        internal bool IsCPModeActive
-        {
-            get { return _isCP; }
-            set { _isCP = value; OnPropertyChanged( nameof( IsCPModeActive ) ); }
-        }
+        public static readonly DependencyProperty IsTypePauseActiveProperty =
+            DependencyProperty.Register("IsTypePauseActive", 
+                typeof(bool), 
+                typeof(ProgramViewModel), 
+                new UIPropertyMetadata(false));
 
-        private bool _IsTypeDischarge;
-        internal bool IsTypeDischargeActive
-        {
-            get { return _IsTypeDischarge; }
-            set { _IsTypeDischarge = value; OnPropertyChanged( nameof( IsTypeDischargeActive ) ); }
-        }
+        #endregion
 
-        private bool _isTypePauseActive;
-        internal bool IsTypePauseActive
-        {
-            get { return _isTypePauseActive; }
-            set { _isTypePauseActive = value; OnPropertyChanged( nameof( IsTypeDischargeActive ) ); }
-        }
-        
         // --------- Определение команд----*
         private ICommand _addStage;
         public ICommand AddStage

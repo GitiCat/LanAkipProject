@@ -8,6 +8,8 @@ namespace Akip
 {
     public class ProgramDesignModel : ProgramViewModel
     {
+        public static ProgramDesignModel Instance => new ProgramDesignModel();
+
         private int _selectedIndexStageCollection;
         public int SelectedIndexStageCollection
         {
@@ -115,6 +117,16 @@ namespace Akip
         private TimeSpan GetPulseTimeValue()
         {
             return ConvertToTimeFromStringValue( "Время импульса", PulseTime );
+        }
+
+        /// <summary>
+        ///     Возвращает значение минимального напряжения на нагрузке,
+        ///     при достижении которого нагрузка останавливается
+        /// </summary>
+        /// <returns></returns>
+        public float GetMinimumAmparageInLoad()
+        {
+            return ConvertToNumberFromStringValue("Минимальное значение напряжения на нагрузке", MinLoadValue);
         }
         #endregion
 

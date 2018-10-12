@@ -176,7 +176,9 @@
                         <TextBlock Style="{StaticResource HelpTitleText}" Text="Минимальное значение напряжения" />
                         <TextBlock Margin="10,1.5,0,0" Foreground="#FFA8A8A8" Style="{StaticResource LinkText}">
                             Значение, при котором происходит<LineBreak />
-                            остановка нагрузки</TextBlock>
+                            остановка нагрузки<LineBreak />
+                            Если задано «0», то минимальное<LineBreak />
+                            напряжение не учитывается</TextBlock>
                         <DockPanel>
                             <TextBox HorizontalAlignment="Left"
                                      DockPanel.Dock="Top"

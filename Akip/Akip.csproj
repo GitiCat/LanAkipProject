@@ -71,6 +71,8 @@
     </Compile>
     <Compile Include="ConverValue\BaseValueConverter.cs" />
     <Compile Include="ConverValue\DoubleToStringValueConverter.cs" />
+    <Compile Include="Excel\Export.cs" />
+    <Compile Include="Excel\Import.cs" />
     <Compile Include="IoC\IoC.cs" />
     <Compile Include="IoC\ViewModelLocation.cs" />
     <Compile Include="Model\LanConnectionModel.cs" />
