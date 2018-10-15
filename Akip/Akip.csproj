@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="Controls\ConnectedButton\ConnectedIPButtonDesignModel.cs" />
     <Compile Include="Controls\ConnectedButton\ConnectedIPButtonViewModel.cs" />
+    <Compile Include="ViewModel\Additional\WndTimer.cs" />
     <Compile Include="WorkWithInternet\ReadWriteData.cs" />
     <Compile Include="ViewModel\ConnectionViewModel.cs" />
     <Compile Include="ViewModel\LocateViewModel\CollectionViewModels.cs" />
