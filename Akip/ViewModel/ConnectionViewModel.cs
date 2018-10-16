@@ -144,7 +144,6 @@ namespace Akip
                         Name = ip,
                         RefPage = new ProgramPage(new ProgramDesignModel())
                     } );
-
                     MainViewModel.ConnectedButtonCollection.Add(
                         new ConnectedIPButtonViewModel {
                             ConnectedString = ip,

@@ -142,3 +142,4 @@ D:\GitHub\Repository\project\LanAkipProject\Akip\bin\Debug\Ninject.dll
 D:\GitHub\Repository\project\LanAkipProject\Akip\bin\Debug\Ninject.xml
 D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Controls\ConnectedButton\ConnectionIPProgram.g.cs
 D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Controls\ConnectedButton\ConnectionIPProgram.baml
+D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Akip.csproj.ResolveComReference.cache

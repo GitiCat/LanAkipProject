@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
+using IExcel = Microsoft.Office.Interop.Excel;
 
 namespace Akip
 {
@@ -168,10 +169,88 @@ namespace Akip
         }
         #endregion
 
+        /// <summary>
+        ///     Предоставляет метод загрузки файла в таблицу
+        /// </summary>
         private void M_ImportStageTable()
         {
-            MessageBox.Show( IoC.Get<CollectionViewModels>().SelectedIndexCButtonCollection.ToString() );
+            //  Имя файла для открытия
+            string fileName = string.Empty;
+
+            System.Windows.Forms.OpenFileDialog openFileDialog;
+            openFileDialog = new System.Windows.Forms.OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
+                return;
+
+            if(openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                fileName = openFileDialog.FileName;
+            }
+
+            IExcel.Application ExcelExample = null;
+            IExcel.Workbook objWorkbook = null;
+            IExcel.Worksheet objWorksheet = null;
+            IExcel.Range range = null;
+
+            int RowCount,
+                ColumnCount;
+
+            string _mode,
+                _type,
+                _amperage,
+                _time;
+
+            try
+            {
+                ExcelExample = new IExcel.Application
+                {
+                    Visible = false,
+                    UserControl = false
+                };
+                objWorkbook = ExcelExample.Workbooks.Open(fileName);
+                objWorksheet = objWorkbook.Sheets[1];
+                range = objWorksheet.UsedRange;
+
+                if (objWorksheet != null)
+                {
+                    RowCount = range.Rows.Count;
+                    ColumnCount = range.Columns.Count;
+
+                    for (int i = 1; i <= RowCount; i++)
+                    {
+                        _mode = range.Cells[i, 1].Value2.ToString();
+                        _type = range.Cells[i, 2].Value2.ToString();
+                        _amperage = range.Cells[i, 3].Value2.ToString();
+                        _time = range.Cells[i, 4].Value2.ToString();
+
+                        StageCollection.Add(new ProgramViewModel()
+                        {
+                            NameMode = _mode,
+                            NameType = _type,
+                            AmperageValue = float.Parse(_amperage),
+                            TimeValue = TimeSpan.Parse(_time)
+                        });
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Import file fatal error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            finally
+            {
+                objWorkbook.Close();
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(objWorkbook);
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(objWorksheet);
+                ExcelExample.Quit();
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(ExcelExample);
+            }
         }
+
+        private void 
 
         private void M_ExportStageTable()
         {

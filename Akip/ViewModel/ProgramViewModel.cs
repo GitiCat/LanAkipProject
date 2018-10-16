@@ -172,13 +172,33 @@ namespace Akip
         }
 
         // ---------- Определение коллекций----*
-        internal string NameMode { get; set; }
-        internal string NameType { get; set; }
-        internal float AmperageValue { get; set; }
-        internal TimeSpan TimeValue { get; set; }
+        private string _nameMode;
+        public string NameMode
+        {
+            get { return _nameMode; }
+            set { _nameMode = value; OnPropertyChanged(nameof(NameMode)); }
+        }
+        private string _nameType;
+        public string NameType
+        {
+            get { return _nameType; }
+            set { _nameType = value; OnPropertyChanged(nameof(NameType)); }
+        }
+        private float _amperageValue;
+        public float AmperageValue
+        {
+            get { return _amperageValue; }
+            set { _amperageValue = value; OnPropertyChanged(nameof(AmperageValue)); }
+        }
+        private TimeSpan _timeValue;
+        public TimeSpan TimeValue
+        {
+            get { return _timeValue; }
+            set { _timeValue = value; OnPropertyChanged(nameof(TimeValue)); }
+        }
 
         private ObservableCollection<ProgramViewModel> _stageCollection;
-        internal ObservableCollection<ProgramViewModel> StageCollection
+        public ObservableCollection<ProgramViewModel> StageCollection
         {
             get { return _stageCollection; }
             set { _stageCollection = value;
