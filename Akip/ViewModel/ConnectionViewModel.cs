@@ -33,7 +33,7 @@ namespace Akip
         /// <summary>
         ///     Предоставляем список потоков для активных подключений
         /// </summary>
-        public List<NetworkStream> NetworkStreamCollection { get; set; }
+        public static List<NetworkStream> NetworkStreamCollection { get; set; }
 
         /// <summary>
         ///     Предоставляет коллекцию активных подключений с оборудованием

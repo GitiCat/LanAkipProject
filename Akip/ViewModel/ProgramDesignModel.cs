@@ -28,14 +28,14 @@ namespace Akip
             DeleteStage = new RCommand(() => { M_DeleteStage(); });
             CleanStageTable = new RCommand(() => { M_CreanStageTable(); });
             ImportStageTable = new RCommand(() => { M_ImportStageTable(); });
-            ExportStageTable = new RCommand(() => { MessageBox.Show("Экспорт работает"); });
+            ExportStageTable = new RCommand(() => { M_ExportStageTable() });
             SetMaxLoadValue = new RCommand(() => { MessageBox.Show("Макс велью тоже пашет"); });
         }
 
         private string Temp_NameModeActive = null;
         private string Temp_NameTypeActive = null;
         private float Temp_AmperageValue;
-        private TimeSpan Temp_TimeValue = TimeSpan.Zero;
+        private double Temp_TimeValue = 0.0;
 
         #region Добавление нового этапа нагрузки
         private void M_AddStage()
@@ -62,7 +62,7 @@ namespace Akip
             }
 
             Temp_TimeValue = GetPulseTimeValue();
-            if(Temp_TimeValue == TimeSpan.Zero) {
+            if(Temp_TimeValue == 0.0) {
                 MessageBox.Show( "Невожможно добавить новый этап!\nВведите значение времени импульса на этапе...",
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error );
                 return;
@@ -115,7 +115,7 @@ namespace Akip
         ///     на этапе типа <see cref="TimeSpan"/>
         /// </summary>
         /// <returns></returns>
-        private TimeSpan GetPulseTimeValue()
+        private double GetPulseTimeValue()
         {
             return ConvertToTimeFromStringValue( "Время импульса", PulseTime );
         }
@@ -180,14 +180,21 @@ namespace Akip
             System.Windows.Forms.OpenFileDialog openFileDialog;
             openFileDialog = new System.Windows.Forms.OpenFileDialog();
 
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.Cancel)
-                return;
-
-            if(openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 fileName = openFileDialog.FileName;
+                ImportFrom(fileName);
             }
+            else return;
+        }
 
+        /// <summary>
+        ///     Метод, позволяющий загрузить выбранный
+        ///     Excel файл в таблицу
+        /// </summary>
+        /// <param name="fileName">Имя файла для загрузки</param>
+        private void ImportFrom(string fileName)
+        {
             IExcel.Application ExcelExample = null;
             IExcel.Workbook objWorkbook = null;
             IExcel.Worksheet objWorksheet = null;
@@ -229,7 +236,7 @@ namespace Akip
                             NameMode = _mode,
                             NameType = _type,
                             AmperageValue = float.Parse(_amperage),
-                            TimeValue = TimeSpan.Parse(_time)
+                            TimeValue = double.Parse(_time)
                         });
                     }
                 }
@@ -247,14 +254,30 @@ namespace Akip
                 System.Runtime.InteropServices.Marshal.FinalReleaseComObject(objWorksheet);
                 ExcelExample.Quit();
                 System.Runtime.InteropServices.Marshal.FinalReleaseComObject(ExcelExample);
+                //TODO: Доработать полное закрытие после импорта excel файла
             }
         }
-
-        private void 
+        
 
         private void M_ExportStageTable()
         {
+            string fileName = null;
 
+            System.Windows.Forms.SaveFileDialog saveFileDialog;
+            saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                fileName = saveFileDialog.FileName;
+                ExportTo(fileName);
+            }
+            else return;
+        }
+
+
+        private void ExportTo(string fileName)
+        {
+            //TODO: Написать сохранение программы нагрузки
         }
 
         private void M_SetMaxLoadValue()
@@ -265,8 +288,9 @@ namespace Akip
                 return;
             }
 
-        }
 
+
+        }
         #region Конвертеры
         /// <summary>
         ///     Возвращает преобразованную строку типа <see cref="string"/>
@@ -320,11 +344,9 @@ namespace Akip
         /// <param name="valueName">Имя параметра преобразования</param>
         /// <param name="param">Входной параметр для преобразования</param>
         /// <returns></returns>
-        public TimeSpan ConvertToTimeFromStringValue(string valueName, string param)
+        public double ConvertToTimeFromStringValue(string valueName, string param)
         {
-            TimeSpan result = TimeSpan.Zero;
-            string format = "G";
-            CultureInfo culture = CultureInfo.CurrentCulture;
+            double result = 0.0;
 
             try {
 
@@ -335,10 +357,16 @@ namespace Akip
                         $"Допустимый формат: 0.000 (секунды.миллисекунды" );
                     throw new ArgumentException();
                 }
-                
-                if (TimeSpan.TryParseExact( param, format, culture, out TimeSpan interim )) {
-                    result = interim;
+
+                if (param.Contains(".") || param.Contains(","))
+                {
+                    if (param.Contains("."))
+                    {
+                        param.Replace(".", ",");
+                    }
                 }
+
+                result = double.Parse(param);
 
             } catch (Exception objException) {
                 MessageBox.Show( $"Произошла ошибка преобразования временного интервала..." +

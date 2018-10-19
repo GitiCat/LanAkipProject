@@ -91,7 +91,7 @@
     </Compile>
     <Compile Include="Controls\ConnectedButton\ConnectedIPButtonDesignModel.cs" />
     <Compile Include="Controls\ConnectedButton\ConnectedIPButtonViewModel.cs" />
-    <Compile Include="WorkWithInternet\ReadWriteData.cs" />
+    <Compile Include="ViewModel\Additional\NetStream\Request.cs" />
     <Compile Include="ViewModel\ConnectionViewModel.cs" />
     <Compile Include="ViewModel\LocateViewModel\CollectionViewModels.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -204,9 +204,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\Additional\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>

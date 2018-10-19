@@ -190,8 +190,8 @@ namespace Akip
             get { return _amperageValue; }
             set { _amperageValue = value; OnPropertyChanged(nameof(AmperageValue)); }
         }
-        private TimeSpan _timeValue;
-        public TimeSpan TimeValue
+        private double _timeValue;
+        public double TimeValue
         {
             get { return _timeValue; }
             set { _timeValue = value; OnPropertyChanged(nameof(TimeValue)); }
