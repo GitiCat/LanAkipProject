@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\GitHub\Repository\project\LanAkipProject\Akip\App.xaml
-16758464090
+172091363293
 
-35444164186
+36-2052468731
 202069881206
-Controls\ConnectedButton\ConnectionIPProgram.xaml;MainWindow.xaml;Pages\CommunicationPage.xaml;Pages\HelpAndInfoPage.xaml;Pages\HomePage.xaml;Pages\JobPage.xaml;Pages\ProgramPage.xaml;Pages\SettingPage.xaml;Simple Styles.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\ComboBox.xaml;Styles\DataGrid.xaml;Styles\Fonts.xaml;Styles\RadioButtons.xaml;Styles\TextBox.xaml;
+Controls\ConnectedButton\ConnectionIPProgram.xaml;Controls\Workload\WorkloadControl.xaml;MainWindow.xaml;Pages\CommunicationPage.xaml;Pages\HelpAndInfoPage.xaml;Pages\HomePage.xaml;Pages\JobPage.xaml;Pages\ProgramPage.xaml;Pages\SettingPage.xaml;Simple Styles.xaml;Styles\Buttons.xaml;Styles\Colors.xaml;Styles\ComboBox.xaml;Styles\DataGrid.xaml;Styles\Fonts.xaml;Styles\RadioButtons.xaml;Styles\TextBox.xaml;
 
-True
+False
 

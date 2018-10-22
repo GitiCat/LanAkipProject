@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Akip.WorkloadControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Akip"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <local:WorkloadControlViewModel x:Key="workloadViewModel" />
+    </UserControl.Resources>
+
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource workloadViewModel}" />
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="15,0,0,0" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource 2TitleText}" Text="Нагрузка: " />
+            <TextBlock Style="{StaticResource 2TitleText}" Text="{Binding NumberLoad}" />
+            <TextBlock Style="{StaticResource 2TitleText}" Text="   :   " />
+            <TextBlock Style="{StaticResource 2TitleText}" Text="{Binding IpLoad}" />
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Margin="15,20,0,0">
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Всего этапов: " />
+                    <TextBlock Text="{Binding StageCount}" />
+                </StackPanel>
+
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Общее время: " />
+                    <TextBlock Text="{Binding TotalTime}" />
+                </StackPanel>
+
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Минимальное напряжение: " />
+                    <TextBlock Text="{Binding MinAmperageValue}" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Margin="40,20,0,0">
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Номер текущего этапа: " />
+                    <TextBlock Text="{Binding CurrentStageNumber}" />
+                </StackPanel>
+
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Время: " />
+                    <TextBlock Text="{Binding StageTime}" />
+                </StackPanel>
+
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Обратный отсчет: " />
+                    <TextBlock Text="{Binding Countdown}" />
+                </StackPanel>
+
+                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                    <TextBlock Text="Напряжение: " />
+                    <TextBlock Text="{Binding CurrentAmperage}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Margin="15" Orientation="Horizontal">
+            <TextBlock Text="Состояние потока: " />
+            <TextBlock FontWeight="Bold" Text="{Binding CurrentThreadStat}" />
+
+            <TextBlock Margin="20,0,0,0" Text="Приоритет потока: " />
+            <TextBlock FontWeight="Bold" Text="{Binding CurrentThreadPriory}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

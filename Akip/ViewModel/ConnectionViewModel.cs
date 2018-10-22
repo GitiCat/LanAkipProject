@@ -1,4 +1,5 @@
 ﻿using Akip.LanConnection;
+using Akip.NetStream;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

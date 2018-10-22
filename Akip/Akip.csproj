@@ -70,6 +70,11 @@
     <Compile Include="Controls\ConnectedButton\ConnectionIPProgram.xaml.cs">
       <DependentUpon>ConnectionIPProgram.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Workload\WorkloadControl.xaml.cs">
+      <DependentUpon>WorkloadControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Workload\WorkloadControlParam.cs" />
+    <Compile Include="Controls\Workload\WorkloadControlViewModel.cs" />
     <Compile Include="ConverValue\BaseValueConverter.cs" />
     <Compile Include="ConverValue\DoubleToStringValueConverter.cs" />
     <Compile Include="Excel\Export.cs" />
@@ -97,7 +102,13 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ProgramDesignModel.cs" />
     <Compile Include="ViewModel\ProgramViewModel.cs" />
+    <Compile Include="ViewModel\WorkProcess\SystemCommands.cs" />
+    <Compile Include="ViewModel\WorkProcess\Workload.cs" />
     <Page Include="Controls\ConnectedButton\ConnectionIPProgram.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Workload\WorkloadControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

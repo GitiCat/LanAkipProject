@@ -28,7 +28,7 @@ namespace Akip
             DeleteStage = new RCommand(() => { M_DeleteStage(); });
             CleanStageTable = new RCommand(() => { M_CreanStageTable(); });
             ImportStageTable = new RCommand(() => { M_ImportStageTable(); });
-            ExportStageTable = new RCommand(() => { M_ExportStageTable() });
+            ExportStageTable = new RCommand(() => { M_ExportStageTable(); });
             SetMaxLoadValue = new RCommand(() => { MessageBox.Show("Макс велью тоже пашет"); });
         }
 
