@@ -36,7 +36,10 @@ namespace Akip
 
         public void Setup(NetworkStream netStream)
         {
-            
+            if(LoadIndex < LoadColleciton.Count)
+            {
+
+            }
         }
 
         private void Process()

@@ -281,6 +281,27 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Width="50"
+                               Height="50"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource FontAwesomeTitleText}"
+                               Text="&#xf122;" />
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Style="{StaticResource HelpTitleText}" Text="Повторение" />
+                        <TextBlock Margin="10,1.5,0,0" Foreground="#FFA8A8A8" Style="{StaticResource LinkText}">
+                            Задает число повторений<LineBreak />
+                            заданой программы</TextBlock>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Margin="0,25,0,15" DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
                         <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
