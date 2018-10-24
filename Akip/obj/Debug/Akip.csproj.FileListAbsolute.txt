@@ -145,3 +145,5 @@ D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Controls\ConnectedBut
 D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Akip.csproj.ResolveComReference.cache
 D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Controls\Workload\WorkloadControl.baml
 D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Controls\Workload\WorkloadControl.g.cs
+D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Pages\Pulse\PulsePage.baml
+D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Pages\Pulse\PulsePage.g.cs

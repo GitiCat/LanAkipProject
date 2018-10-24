@@ -8,8 +8,8 @@ namespace Akip
 {
     public class WorkloadControlViewModel : WorkloadControlParam
     {
-        private ObservableCollection<ProgramDesignModel> _loadCollection;
-        public ObservableCollection<ProgramDesignModel> LoadColleciton
+        private ObservableCollection<PulseViewModel> _loadCollection;
+        public ObservableCollection<PulseViewModel> LoadColleciton
         {
             get { return _loadCollection; }
             set { _loadCollection = value; OnPropertyChanged(nameof(LoadColleciton)); }
@@ -21,32 +21,24 @@ namespace Akip
             get { return _numberRepetitions; }
             set { _numberRepetitions = value; OnPropertyChanged(nameof(NumberRepetitions)); }
         }
-
-        private double _minVoltageValue;
-        public double MinVoltageValue
+        
+        public WorkloadControlViewModel()
         {
-            get { return _minVoltageValue; }
-            set { _minVoltageValue = value; OnPropertyChanged(nameof(MinVoltageValue)); }
+            CommandInitialization();
         }
 
-        public WorkloadControlViewModel() { }
-
-        private int LoadIndex = 0;
-        private Thread LoadBackgroundThread = null;
-
-        public void Setup(NetworkStream netStream)
+        /// <summary>
+        ///     Предоставляет метод инициализации команд 
+        ///     управления запущенным процессом
+        /// </summary>
+        private void CommandInitialization()
         {
-            if(LoadIndex < LoadColleciton.Count)
-            {
-
-            }
+            RunningTest = new RCommand(() => { StartTimer(DateTime.Now); });
+            StopTest = new RCommand(() => { StopTimer(); });
+            SuspendTest = new RCommand(() => { PauseTimer(); });
+            ResumeTest = new RCommand(() => { ReleaseTimer(); });
         }
-
-        private void Process()
-        {
-
-        }
-
+        
         #region Реализация таймера работы
         //  Время запуска таймера
         private DateTime _startCountdown;
@@ -71,6 +63,7 @@ namespace Akip
             {
                 Interval = _interval
             };
+
             _timer.Tick += delegate
             {
                 var now = DateTime.Now;
@@ -150,6 +143,10 @@ namespace Akip
             _pauseTime = DateTime.Now;
         }
 
+        /// <summary>
+        ///     Предоставляет метод возобновления 
+        ///     работы таймера после паузы
+        /// </summary>
         private void ReleaseTimer()
         {
             var now = DateTime.Now;

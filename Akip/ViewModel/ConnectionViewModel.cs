@@ -143,7 +143,7 @@ namespace Akip
 
                     ConnectedPage.ConnectedPageCollection.Add(new ConnectedPage() {
                         Name = ip,
-                        RefPage = new ProgramPage(new ProgramDesignModel())
+                        RefPage = new PulsePage(new PulseDesignModel())
                     } );
                     MainViewModel.ConnectedButtonCollection.Add(
                         new ConnectedIPButtonViewModel {

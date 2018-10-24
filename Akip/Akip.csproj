@@ -91,6 +91,11 @@
     <Compile Include="Pages\ProgramPage.xaml.cs">
       <DependentUpon>ProgramPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Pulse\PulseDesignModel.cs" />
+    <Compile Include="Pages\Pulse\PulsePage.xaml.cs">
+      <DependentUpon>PulsePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Pulse\PulseViewModel.cs" />
     <Compile Include="Pages\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
@@ -102,6 +107,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ProgramDesignModel.cs" />
     <Compile Include="ViewModel\ProgramViewModel.cs" />
+    <Compile Include="ViewModel\JobPageViewModel.cs" />
     <Compile Include="ViewModel\WorkProcess\SystemCommands.cs" />
     <Compile Include="ViewModel\WorkProcess\Workload.cs" />
     <Page Include="Controls\ConnectedButton\ConnectionIPProgram.xaml">
@@ -141,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ProgramPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Pulse\PulsePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

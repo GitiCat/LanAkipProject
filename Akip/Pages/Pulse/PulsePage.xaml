@@ -1,0 +1,222 @@
+﻿<Page x:Class="Akip.PulsePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Akip"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Title="PulsePage"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:PulseDesignModel x:Key="design" />
+    </Page.Resources>
+
+    <Page.DataContext>
+        <Binding Source="{StaticResource design}" />
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Style="{StaticResource 2TitleText}" Text="Создание программы нагрузки" />
+            <Separator Background="#DCDEDD" />
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Column="0">
+                <Grid Margin="0,10,0,15" DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Width="50"
+                               Height="50"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource FontAwesomeTitleText}"
+                               Text="&#xf181;" />
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Style="{StaticResource HelpTitleText}" Text="Тип этапа" />
+                        <DockPanel>
+                            <RadioButton Content="Разряд"
+                                         DockPanel.Dock="Top"
+                                         IsChecked="{Binding IsLoadOn}"
+                                         Style="{StaticResource buttonstripe1}" />
+                            <RadioButton Content="Пауза"
+                                         DockPanel.Dock="Top"
+                                         IsChecked="{Binding IsLoadOff}"
+                                         Style="{StaticResource buttonstripe1}" />
+                        </DockPanel>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Margin="0,25,0,15" DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Width="50"
+                               Height="50"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource FontAwesomeTitleText}"
+                               Text="&#xf017;" />
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Style="{StaticResource HelpTitleText}" Text="Время импульса" />
+                        <TextBlock Margin="10,1.5,0,0"
+                                   Foreground="#FFA8A8A8"
+                                   Style="{StaticResource LinkText}"
+                                   Text="Значение на одном этапе" />
+                        <DockPanel>
+                            <TextBox HorizontalAlignment="Left"
+                                     DockPanel.Dock="Top"
+                                     Style="{StaticResource MainTextBox}"
+                                     Text="{Binding ActiveTime}" />
+                            <TextBlock Margin="10,1.5,0,0"
+                                       Foreground="#FFA8A8A8"
+                                       Style="{StaticResource LinkText}"
+                                       Text="( Задается в секундах/миллисекундах )" />
+                        </DockPanel>
+                    </StackPanel>
+
+                </Grid>
+
+                <Grid Margin="0,25,0,15" DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Width="50"
+                               Height="50"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource FontAwesomeTitleText}"
+                               Text="&#xf122;" />
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Style="{StaticResource HelpTitleText}" Text="Повторение" />
+                        <TextBlock Margin="10,1.5,0,0" Foreground="#FFA8A8A8" Style="{StaticResource LinkText}">
+                            Задает число повторений<LineBreak />
+                            заданой программы</TextBlock>
+                        <DockPanel>
+                            <TextBox HorizontalAlignment="Left"
+                                     DockPanel.Dock="Left"
+                                     Style="{StaticResource MainTextBox}"
+                                     Text="{Binding InputNumberRepetitions}" />
+                            <Button Width="75"
+                                    Height="30"
+                                    Margin="10,3,0,0"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding SetRepetitions}"
+                                    Content="Задать"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource MainButtonStyle}" />
+                        </DockPanel>
+                        <TextBlock Margin="0,10,150,0" HorizontalAlignment="Center" Text="{Binding NumberRepetitions}" />
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+
+
+            <DockPanel Grid.Column="1">
+                <Grid Margin="0,25,0,15" DockPanel.Dock="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Width="50"
+                               Height="50"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource FontAwesomeTitleText}"
+                               Text="&#xf0ca;" />
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Style="{StaticResource HelpTitleText}" Text="Управление программой" />
+                        <TextBlock Margin="10,1.5,0,0" Foreground="#FFA8A8A8" Style="{StaticResource LinkText}">
+                            Редактирование программы нагрузки
+                        </TextBlock>
+                        <DockPanel>
+                            <Button Width="150"
+                                    Height="30"
+                                    Margin="10,3,0,0"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding AddStage}"
+                                    Content="Добавить этап"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource MainButtonStyle}" />
+                            <Button Width="150"
+                                    Height="30"
+                                    Margin="10,3,0,0"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding DeleteStage}"
+                                    Content="Удалить этап"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource MainButtonStyle}" />
+                            <Button Width="150"
+                                    Height="30"
+                                    Margin="10,3,0,0"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding DeleteAllStages}"
+                                    Content="Очистить таблицу"
+                                    DockPanel.Dock="Top"
+                                    Style="{StaticResource MainButtonStyle}" />
+                        </DockPanel>
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+
+            <DockPanel Grid.Column="3"
+                       Width="405"
+                       Margin="20,0,0,0"
+                       HorizontalAlignment="Left">
+                <ListView Height="490"
+                          VerticalAlignment="Top"
+                          DockPanel.Dock="Top"
+                          ItemsSource="{Binding PulseCollection}"
+                          SelectedIndex="{Binding PulseCollectionSelectIndex}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="200" DisplayMemberBinding="{Binding T_Type}" Header="Режим" />
+                            <GridViewColumn Width="200" DisplayMemberBinding="{Binding T_Time}" Header="Время" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <StackPanel Margin="10,10,0,0" DockPanel.Dock="Top" Orientation="Horizontal">
+                    <TextBlock Margin="10,5,0,0" Style="{StaticResource LinkText}" Text="Общее число этапов: " />
+                    <TextBlock Margin="5,5,0,10" Style="{StaticResource LinkText}" Text="{Binding TotalStageCount}" />
+                </StackPanel>
+
+                <StackPanel Margin="10,0,0,0" DockPanel.Dock="Top" Orientation="Horizontal">
+                    <TextBlock Margin="10,5,0,0" Style="{StaticResource LinkText}" Text="Общее время программы" />
+                    <TextBlock Margin="5,5,0,10" Style="{StaticResource LinkText}" Text="{Binding TotalTimeInTable}" />
+                </StackPanel>
+
+            </DockPanel>
+
+        </Grid>
+    </Grid>
+</Page>

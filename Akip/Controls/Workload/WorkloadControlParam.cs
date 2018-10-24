@@ -1,7 +1,37 @@
-﻿namespace Akip
+﻿using System.Windows.Input;
+
+namespace Akip
 {
     public class WorkloadControlParam : Base
     {
+        private ICommand _runningTest;
+        public ICommand RunningTest
+        {
+            get { return _runningTest; }
+            set { _runningTest = value; OnPropertyChanged(nameof(RunningTest)); }
+        }
+
+        private ICommand _stopTest;
+        public ICommand StopTest
+        {
+            get { return _stopTest; }
+            set { _stopTest = value; OnPropertyChanged(nameof(StopTest)); }
+        }
+
+        private ICommand _suspendTest;
+        public ICommand SuspendTest
+        {
+            get { return _suspendTest; }
+            set { _suspendTest = value; OnPropertyChanged(nameof(SuspendTest)); }
+        }
+
+        private ICommand _resumeTest;
+        public ICommand ResumeTest
+        {
+            get { return _resumeTest; }
+            set { _resumeTest = value; OnPropertyChanged(nameof(ResumeTest)); }
+        }
+
         private string _numberLoad;
         public string NumberLoad
         {
@@ -29,14 +59,7 @@
             get { return _totalTime; }
             set { _totalTime = value; OnPropertyChanged(nameof(TotalTime)); }
         }
-
-        private string _minAmperageValue;
-        public string MinAmperageValue
-        {
-            get { return _minAmperageValue; }
-            set { _minAmperageValue = value; OnPropertyChanged(nameof(MinAmperageValue)); }
-        }
-
+        
         private string _currentStageNumber;
         public string CurrentStageNumber
         {
@@ -56,13 +79,6 @@
         {
             get { return _countdown; }
             set { _countdown = value; OnPropertyChanged(nameof(Countdown)); }
-        }
-
-        private string _currentAmperage;
-        public string CurrentAmperage
-        {
-            get { return _currentAmperage; }
-            set { _currentAmperage = value; OnPropertyChanged(nameof(CurrentAmperage)); }
         }
 
         private string _currentThreadStat;
