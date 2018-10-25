@@ -8,11 +8,11 @@
       mc:Ignorable="d">
 
     <Page.Resources>
-        <local:JobPageViewModel x:Key="vm" />
+        <local:JobPageViewModel x:Key="jobVM" />
     </Page.Resources>
 
     <Page.DataContext>
-        <Binding Source="{StaticResource vm}" />
+        <Binding Source="{StaticResource jobVM}" />
     </Page.DataContext>
 
     <Grid>
@@ -43,12 +43,13 @@
                     <Button Width="150"
                             Height="30"
                             Margin="0,0,20,0"
+                            Command="{Binding ProcessesInitialization, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             Content="Инициализация потоков"
                             DockPanel.Dock="Left"
                             Style="{StaticResource MainButtonStyle}" />
                 </DockPanel>
 
-                <ItemsControl ItemsSource="{Binding ProcessControlColleciton, UpdateSourceTrigger=PropertyChanged}">
+                <ItemsControl Margin="0,10,0,0" ItemsSource="{Binding ProcessControlColleciton, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Margin="0" />
@@ -56,7 +57,7 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:WorkloadControl />
+                            <local:WorkloadControl Margin="5,10" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

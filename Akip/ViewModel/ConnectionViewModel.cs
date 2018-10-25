@@ -155,6 +155,7 @@ namespace Akip
                                     = ConnectedPage.ConnectedPageCollection[ConnectedPage.ConnectedPageCollection.IndexOf( target )].RefPage;
                             } )
                         } );
+                    Request.SetSystemValue(ObjTcpConnect.GetStream(), SystemCommands.Remote);
                 }
             }
         }
@@ -165,6 +166,10 @@ namespace Akip
         private void DisconnectionMethod()
         {
             if (TcpClientColleciton[ConnectionIPIndex].Connected) {
+
+                Request.SetSystemValue(NetworkStreamCollection[ConnectionIPIndex], SystemCommands.LoadOff);
+                Request.SetSystemValue(NetworkStreamCollection[ConnectionIPIndex], SystemCommands.Local);
+
                 NetworkStreamCollection[ConnectionIPIndex].Close();
                 TcpClientColleciton[ConnectionIPIndex].Close();
                 

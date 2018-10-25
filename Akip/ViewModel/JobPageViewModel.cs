@@ -7,7 +7,12 @@ namespace Akip
 {
     public class JobPageViewModel : Base
     {
-        public ICommand ProcessesInitialization { get; set; }
+        private ICommand _processesInitialization;
+        public ICommand ProcessesInitialization
+        {
+            get { return _processesInitialization; }
+            set { _processesInitialization = value; OnPropertyChanged(nameof(ProcessesInitialization)); }
+        }
         private ObservableCollection<WorkloadControlViewModel> _processControlCollection;
         public ObservableCollection<WorkloadControlViewModel> ProcessControlColleciton
         {
@@ -30,16 +35,23 @@ namespace Akip
 
         private void ProcessesInitializationMethod()
         {
+            if (ProcessControlColleciton.Count > 0)
+                ProcessControlColleciton.Clear();
+
             for(int index = 0; index < ConnectedPage.ConnectedPageCollection.Count; index++)
             {
                 var pageObject = ConnectedPage.ConnectedPageCollection[index].RefPage.DataContext as PulseDesignModel;
                 LoadCopyCollection = pageObject.PulseCollection;
+                var netPageObject = ConnectionViewModel.NetworkStreamCollection;
                 ProcessControlColleciton.Add(new WorkloadControlViewModel()
                 {
                     NumberLoad = (index + 1).ToString(),
                     IpLoad = ConnectedPage.ConnectedPageCollection[index].Name,
                     LoadColleciton = LoadCopyCollection,
-                    NumberRepetitions = Convert.ToInt32(pageObject.NumberRepetitions)
+                    NumberRepetitions = Convert.ToInt32(pageObject.NumberRepetitions),
+                    StageCount = pageObject.TotalStageCount,
+                    TotalTime = pageObject.TotalTimeInTable,
+                    Network = netPageObject[index]
                 });
             }
         }

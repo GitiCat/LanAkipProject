@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Net.Sockets;
+using System.Windows.Input;
 
 namespace Akip
 {
@@ -93,6 +94,13 @@ namespace Akip
         {
             get { return _currentThreadPriory; }
             set { _currentThreadPriory = value; OnPropertyChanged(nameof(CurrentThreadPriory)); }
+        }
+
+        private NetworkStream _network;
+        public NetworkStream Network
+        {
+            get { return _network; }
+            set { _network = value; OnPropertyChanged(nameof(Network)); }
         }
     }
 }

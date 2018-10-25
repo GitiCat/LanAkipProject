@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -43,6 +44,13 @@ namespace Akip
         {
             get { return _inputNumberRepetitions; }
             set { _inputNumberRepetitions = value; OnPropertyChanged(nameof(InputNumberRepetitions)); }
+        }
+
+        private NetworkStream _network;
+        public NetworkStream Network
+        {
+            get { return _network; }
+            set { _network = value; OnPropertyChanged(nameof(Network)); }
         }
 
         //********Список импульсов********

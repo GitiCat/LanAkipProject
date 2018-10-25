@@ -1,124 +1,118 @@
 ﻿<Page x:Class="Akip.CommunicationPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Akip"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
     <Page.Resources>
-        <local:ConnectionViewModel x:Key="c_viewmodel"/>
+        <local:ConnectionViewModel x:Key="c_viewmodel" />
     </Page.Resources>
 
     <Page.DataContext>
-        <Binding Source="{StaticResource c_viewmodel}"/>
+        <Binding Source="{StaticResource c_viewmodel}" />
     </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Настройка соединения"
-                Style="{StaticResource 2TitleText}"/>
-            <Separator Background="#DCDEDD"/>
+            <TextBlock Style="{StaticResource 2TitleText}" Text="Настройка соединения" />
+            <Separator Background="#DCDEDD" />
         </StackPanel>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
             <DockPanel Grid.Column="0">
-                <Grid Margin="0 25 0 15"
-                      DockPanel.Dock="Top">
+                <Grid Margin="0,25,0,15" DockPanel.Dock="Top">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Column="0" 
-                           Text="&#xf126;"
-                           Width="50"
-                           Height="50"
-                           VerticalAlignment="Top"
-                           Style="{StaticResource FontAwesomeTitleText}"/>
+                    <TextBlock Grid.Column="0"
+                               Width="50"
+                               Height="50"
+                               VerticalAlignment="Top"
+                               Style="{StaticResource FontAwesomeTitleText}"
+                               Text="&#xf126;" />
 
                     <StackPanel Grid.Column="1">
-                        <TextBlock Text="Адрес подключения" 
-                               Style="{StaticResource HelpTitleText}"/>
-                        <TextBlock Text="Выберите IP адрес для подключения к оборудованию"
+                        <TextBlock Style="{StaticResource HelpTitleText}" Text="Адрес подключения" />
+                        <TextBlock Margin="10,1.5,0,0"
+                                   Foreground="#FFA8A8A8"
                                    Style="{StaticResource LinkText}"
-                                   Margin="10 1.5 0 0"
-                                   Foreground="#FFA8A8A8"/>
+                                   Text="Выберите IP адрес для подключения к оборудованию" />
                         <DockPanel>
-                            <StackPanel DockPanel.Dock="Top"
-                                        Orientation="Horizontal">
-                                <ComboBox Style="{StaticResource ComboBoxFlatStyle}"
-                                      Margin="10 5 0 0"
-                                      Width="300"
-                                      DockPanel.Dock="Top"
-                                      HorizontalAlignment="Left"
-                                      ItemsSource="{Binding LanCollection}"
-                                      DisplayMemberPath="ConnectionIP"
-                                      SelectedValue="{Binding SelectLanCollection}"/>
-                                <Button Content="&#xf021;"
-                                        FontFamily="{StaticResource FontAwesome}"
-                                        Style="{StaticResource ImageButtonStyle}"
-                                        Width="25"
+                            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                                <ComboBox Width="300"
+                                          Margin="10,5,0,0"
+                                          HorizontalAlignment="Left"
+                                          DisplayMemberPath="ConnectionIP"
+                                          DockPanel.Dock="Top"
+                                          ItemsSource="{Binding LanCollection}"
+                                          SelectedValue="{Binding SelectLanCollection}"
+                                          Style="{StaticResource ComboBoxFlatStyle}" />
+                                <Button Width="25"
                                         Height="25"
-                                        Margin="5 5 0 0"
-                                        Command="{Binding UpdateLanCollection}"/>
+                                        Margin="5,5,0,0"
+                                        Command="{Binding UpdateLanCollection}"
+                                        Content="&#xf021;"
+                                        FontFamily="{StaticResource FontAwesome}"
+                                        Style="{StaticResource ImageButtonStyle}" />
                             </StackPanel>
 
-                            <Button Content="Подключения"
-                                    Style="{StaticResource MainButtonStyle}"
-                                    Width="100"
+                            <Button Width="100"
                                     Height="25"
+                                    Margin="10,5,0,0"
                                     HorizontalAlignment="Left"
-                                    Margin="10 5 0 0"
+                                    Command="{Binding ConnectionToLan}"
+                                    Content="Подключения"
                                     DockPanel.Dock="Top"
-                                    Command="{Binding ConnectionToLan}"/>
+                                    Style="{StaticResource MainButtonStyle}" />
 
-                            <TextBlock Text="Активные подключения" 
-                               Style="{StaticResource HelpTitleText}"
-                                       Margin="10 20 0 0"
-                                       DockPanel.Dock="Top"/>
-                            <TextBlock Text="Отображение активных подключений"
-                                       Style="{StaticResource LinkText}"
-                                       Margin="10 1.5 0 0"
+                            <TextBlock Margin="10,20,0,0"
+                                       DockPanel.Dock="Top"
+                                       Style="{StaticResource HelpTitleText}"
+                                       Text="Активные подключения" />
+                            <TextBlock Margin="10,1.5,0,0"
+                                       DockPanel.Dock="Top"
                                        Foreground="#FFA8A8A8"
-                                       DockPanel.Dock="Top"/>
+                                       Style="{StaticResource LinkText}"
+                                       Text="Отображение активных подключений" />
 
-                            <ListView DockPanel.Dock="Top"
-                                      Margin="10 5 0 0"
-                                      Width="200"
+                            <ListView Width="200"
                                       Height="200"
+                                      Margin="10,5,0,0"
                                       HorizontalAlignment="Left"
+                                      DockPanel.Dock="Top"
                                       ItemsSource="{Binding ConnectedIP}"
                                       SelectedIndex="{Binding ConnectionIPIndex}">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="IP"
-                                                        Width="200"
-                                                        DisplayMemberBinding="{Binding ConnectedIPString}"/>
+                                        <GridViewColumn Width="200" DisplayMemberBinding="{Binding ConnectedIPString}" Header="IP" />
                                     </GridView>
                                 </ListView.View>
                             </ListView>
 
-                            <Button Content="Прервать соединение"
-                                    Style="{StaticResource MainButtonStyle}"
-                                    Width="200"
+                            <Button Width="200"
                                     Height="25"
+                                    Margin="10,5,0,0"
                                     HorizontalAlignment="Left"
-                                    Margin="10 5 0 0"
+                                    Command="{Binding DisconnectionFromLan}"
+                                    Content="Прервать соединение"
                                     DockPanel.Dock="Top"
-                                    Command="{Binding DisconnectionFromLan}"/>
+                                    Style="{StaticResource MainButtonStyle}" />
 
                         </DockPanel>
                     </StackPanel>
@@ -126,8 +120,8 @@
                 </Grid>
 
             </DockPanel>
-            
+
         </Grid>
-        
+
     </Grid>
 </Page>

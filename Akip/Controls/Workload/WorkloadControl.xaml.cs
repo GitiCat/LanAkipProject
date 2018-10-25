@@ -7,10 +7,9 @@ namespace Akip
     /// </summary>
     public partial class WorkloadControl : UserControl
     {
-        public WorkloadControl(WorkloadControlViewModel controlViewModel)
+        public WorkloadControl()
         {
             InitializeComponent();
-            DataContext = controlViewModel;
         }
     }
 }

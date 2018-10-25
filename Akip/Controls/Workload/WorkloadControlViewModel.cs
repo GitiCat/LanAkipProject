@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Akip.NetStream;
+using System;
 using System.Collections.ObjectModel;
 using System.Net.Sockets;
 using System.Threading;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace Akip
@@ -25,6 +27,7 @@ namespace Akip
         public WorkloadControlViewModel()
         {
             CommandInitialization();
+            TimerInitialize();
         }
 
         /// <summary>
@@ -43,7 +46,7 @@ namespace Akip
         //  Время запуска таймера
         private DateTime _startCountdown;
         //  Начальное время до окончания таймера
-        private TimeSpan _startTimeSpan = TimeSpan.FromMinutes(20);
+        private TimeSpan _startTimeSpan;
         //  Время до окончания таймера
         private TimeSpan _timeToEnd;
         //  Интервал таймера
@@ -54,11 +57,18 @@ namespace Akip
         //  Объект таймера
         private DispatcherTimer _timer;
 
+        private int SelectStageIndex = 0;
+
         /// <summary>
         ///     Инициализация нового таймера
         /// </summary>
         public void TimerInitialize()
         {
+            TimeSpan _timeTemp = TimeSpan.Parse(LoadColleciton[0].T_Time);
+            double _timeToDouble = _timeTemp.TotalSeconds;
+            _startTimeSpan = TimeSpan.FromSeconds(_timeToDouble);
+
+
             _timer = new DispatcherTimer
             {
                 Interval = _interval
@@ -88,11 +98,42 @@ namespace Akip
                 if (value.TotalMilliseconds <= 0)
                 {
                     StopTimer();
-                    //TODO: Действия при завершении работы таймера на участке времени
+                    SelectStageIndex += 1;
+                    if(SelectStageIndex != LoadColleciton.Count - 1)
+                    {
+                        ChangedStage(SelectStageIndex);
+                        if (LoadColleciton[SelectStageIndex].T_Type == "Разряд")
+                        {
+                            Request.SetSystemValue(Network, SystemCommands.LoadOn);
+                        }
+                        else
+                        {
+                            Request.SetSystemValue(Network, SystemCommands.LoadOff);
+                        }
+                        StartTimer(DateTime.Now);
+                    }
+                    else
+                    {
+                        Request.SetSystemValue(Network, SystemCommands.LoadOff);
+                        MessageBox.Show("Программа завершена");
+                    }
                 }
 
                 OnPropertyChanged("StringCountdown");
             }
+        }
+
+        //TODO: Приделать после залет на репит
+        private int RepetitionIndex = 1;
+
+        TimeSpan tempTime;
+        double tempTimeToDouble;
+
+        private void ChangedStage(int index)
+        {
+            tempTime = TimeSpan.Parse(LoadColleciton[index].T_Time);
+            tempTimeToDouble = tempTime.TotalSeconds;
+            _startTimeSpan = TimeSpan.FromSeconds(tempTimeToDouble);
         }
 
         /// <summary>
