@@ -100,14 +100,12 @@ D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Akip.pdb
 D:\GitHub\Projects\LanAkipProject\Akip\bin\Debug\Akip.exe.config
 D:\GitHub\Projects\LanAkipProject\Akip\bin\Debug\Akip.exe
 D:\GitHub\Projects\LanAkipProject\Akip\bin\Debug\Akip.pdb
-D:\GitHub\Projects\LanAkipProject\Akip\bin\Debug\wpf.fontawesome5.dll
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Akip.csprojAssemblyReference.cache
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Simple Styles.baml
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Styles\Colors.baml
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Styles\DataGrid.baml
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Styles\RadioButtons.baml
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Styles\TextBox.baml
-D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Controls\ConnectionIPProgram.g.cs
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\MainWindow.g.cs
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Pages\CommunicationPage.g.cs
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Pages\HelpAndInfoPage.g.cs
@@ -120,7 +118,6 @@ D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\GeneratedInternalTypeHelper.g.c
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Akip_MarkupCompile.cache
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Akip_MarkupCompile.lref
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\App.baml
-D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Controls\ConnectionIPProgram.baml
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\MainWindow.baml
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Pages\CommunicationPage.baml
 D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Pages\HelpAndInfoPage.baml
@@ -147,3 +144,12 @@ D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Controls\Workload\Wor
 D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Controls\Workload\WorkloadControl.g.cs
 D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Pages\Pulse\PulsePage.baml
 D:\GitHub\Repository\project\LanAkipProject\Akip\obj\Debug\Pages\Pulse\PulsePage.g.cs
+D:\GitHub\Projects\LanAkipProject\Akip\bin\Debug\Ninject.dll
+D:\GitHub\Projects\LanAkipProject\Akip\bin\Debug\Ninject.xml
+D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Akip.csproj.ResolveComReference.cache
+D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Controls\ConnectedButton\ConnectionIPProgram.g.cs
+D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Controls\Workload\WorkloadControl.g.cs
+D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Pages\Pulse\PulsePage.g.cs
+D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Controls\ConnectedButton\ConnectionIPProgram.baml
+D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Controls\Workload\WorkloadControl.baml
+D:\GitHub\Projects\LanAkipProject\Akip\obj\Debug\Pages\Pulse\PulsePage.baml

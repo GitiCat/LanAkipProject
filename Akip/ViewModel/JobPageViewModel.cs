@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -37,7 +38,6 @@ namespace Akip
         {
             if (ProcessControlColleciton.Count > 0)
                 ProcessControlColleciton.Clear();
-
             for(int index = 0; index < ConnectedPage.ConnectedPageCollection.Count; index++)
             {
                 var pageObject = ConnectedPage.ConnectedPageCollection[index].RefPage.DataContext as PulseDesignModel;

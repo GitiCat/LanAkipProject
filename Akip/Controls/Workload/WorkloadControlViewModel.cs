@@ -26,6 +26,7 @@ namespace Akip
         
         public WorkloadControlViewModel()
         {
+            MessageBox.Show( "Процесс инициализации" );
             CommandInitialization();
             TimerInitialize();
         }
@@ -36,7 +37,9 @@ namespace Akip
         /// </summary>
         private void CommandInitialization()
         {
-            RunningTest = new RCommand(() => { StartTimer(DateTime.Now); });
+            RunningTest = new RCommand(() => {
+                RunningNewTimer();
+            } );
             StopTest = new RCommand(() => { StopTimer(); });
             SuspendTest = new RCommand(() => { PauseTimer(); });
             ResumeTest = new RCommand(() => { ReleaseTimer(); });
@@ -46,7 +49,7 @@ namespace Akip
         //  Время запуска таймера
         private DateTime _startCountdown;
         //  Начальное время до окончания таймера
-        private TimeSpan _startTimeSpan;
+        private TimeSpan _startTimeSpan = TimeSpan.FromSeconds(10);
         //  Время до окончания таймера
         private TimeSpan _timeToEnd;
         //  Интервал таймера
@@ -64,11 +67,6 @@ namespace Akip
         /// </summary>
         public void TimerInitialize()
         {
-            TimeSpan _timeTemp = TimeSpan.Parse(LoadColleciton[0].T_Time);
-            double _timeToDouble = _timeTemp.TotalSeconds;
-            _startTimeSpan = TimeSpan.FromSeconds(_timeToDouble);
-
-
             _timer = new DispatcherTimer
             {
                 Interval = _interval
@@ -80,6 +78,8 @@ namespace Akip
                 var elapsed = now.Subtract(_startCountdown);
                 TimeToEnd = _startTimeSpan.Subtract(elapsed);
             };
+
+            
 
             StopTimer();
         }
@@ -99,7 +99,7 @@ namespace Akip
                 {
                     StopTimer();
                     SelectStageIndex += 1;
-                    if(SelectStageIndex != LoadColleciton.Count - 1)
+                    if(SelectStageIndex != LoadColleciton.Count)
                     {
                         ChangedStage(SelectStageIndex);
                         if (LoadColleciton[SelectStageIndex].T_Type == "Разряд")
@@ -164,7 +164,6 @@ namespace Akip
                 _timer.Stop();
             TimeToEnd = _startTimeSpan;
         }
-
         /// <summary>
         ///     Предоставляет метод запуска работы таймера
         /// </summary>
@@ -175,11 +174,19 @@ namespace Akip
             _timer.Start();
         }
 
+        private void RunningNewTimer()
+        {
+            SelectStageIndex = 0;
+            ChangedStage( SelectStageIndex );
+            StartTimer( DateTime.Now );
+        }
+
         /// <summary>
         ///     Предоставляет метод паузы текущего рабочего таймера
         /// </summary>
         private void PauseTimer()
         {
+            ChangedStage( 0 );
             _timer.Stop();
             _pauseTime = DateTime.Now;
         }

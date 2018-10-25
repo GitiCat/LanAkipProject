@@ -70,22 +70,26 @@
                     Height="30"
                     Content="Запуск"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MainButtonStyle}" />
+                    Style="{StaticResource MainButtonStyle}" 
+                    Command="{Binding RunningTest}"/>
             <Button Width="75"
                     Height="30"
                     Content="Стоп"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MainButtonStyle}" />
+                    Style="{StaticResource MainButtonStyle}" 
+                    Command="{Binding StopTest}"/>
             <Button Width="75"
                     Height="30"
                     Content="Пауза"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MainButtonStyle}" />
+                    Style="{StaticResource MainButtonStyle}" 
+                    Command="{Binding SuspendTest}"/>
             <Button Width="95"
                     Height="30"
                     Content="Возобновить"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MainButtonStyle}" />
+                    Style="{StaticResource MainButtonStyle}" 
+                    Command="{Binding ResumeTest}"/>
         </DockPanel>
     </Grid>
 </UserControl>
