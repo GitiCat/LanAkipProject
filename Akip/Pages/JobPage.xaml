@@ -42,9 +42,23 @@
                            DockPanel.Dock="Top">
                     <Button Width="150"
                             Height="30"
-                            Margin="0,0,20,0"
+                            Margin="0,0,100,0"
                             Command="{Binding ProcessesInitialization, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             Content="Инициализация потоков"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource MainButtonStyle}" />
+                    <Button Width="150"
+                            Height="30"
+                            Margin="0,0,5,0"
+                            Command="{Binding ProcessesInitialization, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Content="Запуск всех процессов"
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource MainButtonStyle}" />
+                    <Button Width="170"
+                            Height="30"
+                            Margin="0,0,10,0"
+                            Command="{Binding ProcessesInitialization, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Content="Остановка всех процессов"
                             DockPanel.Dock="Left"
                             Style="{StaticResource MainButtonStyle}" />
                 </DockPanel>
@@ -52,7 +66,7 @@
                 <ItemsControl Margin="0,10,0,0" ItemsSource="{Binding ProcessControlColleciton, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Margin="0" />
+                            <WrapPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>

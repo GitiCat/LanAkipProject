@@ -4,7 +4,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Akip"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             MaxWidth="900"
              d:DataContext="{d:DesignInstance local:WorkloadControlViewModel}"
+             Background="#FFEAEAEA"
              mc:Ignorable="d">
     <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
@@ -15,10 +17,10 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="15,0,0,0" Orientation="Horizontal">
-            <TextBlock Style="{StaticResource 2TitleText}" Text="Нагрузка: " />
-            <TextBlock Style="{StaticResource 2TitleText}" Text="{Binding NumberLoad}" />
-            <TextBlock Style="{StaticResource 2TitleText}" Text="   :   " />
-            <TextBlock Style="{StaticResource 2TitleText}" Text="{Binding IpLoad}" />
+            <TextBlock FontSize="18" Style="{StaticResource 2TitleText}" Text="Нагрузка: " />
+            <TextBlock FontSize="18" Style="{StaticResource 2TitleText}" Text="{Binding NumberLoad}" />
+            <TextBlock FontSize="18" Style="{StaticResource 2TitleText}" Text="   :   " />
+            <TextBlock FontSize="18" Style="{StaticResource 2TitleText}" Text="{Binding IpLoad}" />
         </StackPanel>
 
         <Grid Grid.Row="1" HorizontalAlignment="Center">
@@ -29,67 +31,77 @@
 
             <StackPanel Grid.Column="0" Margin="15,20,10,10">
                 <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                    <TextBlock Text="Всего этапов: " />
-                    <TextBlock Text="{Binding StageCount}" />
+                    <TextBlock FontSize="16" Text="Всего этапов: " />
+                    <TextBlock FontSize="16" Text="{Binding StageCount}" />
                 </StackPanel>
 
                 <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                    <TextBlock Text="Общее время: " />
-                    <TextBlock Text="{Binding TotalTime}" />
+                    <TextBlock FontSize="16" Text="Общее время: " />
+                    <TextBlock FontSize="16" Text="{Binding TotalTime}" />
                 </StackPanel>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="40,20,10,10">
                 <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                    <TextBlock Text="Номер текущего этапа: " />
-                    <TextBlock Text="{Binding CurrentStageNumber}" />
+                    <TextBlock FontSize="16" Text="Номер текущего этапа: " />
+                    <TextBlock FontSize="16" Text="{Binding CurrentStageNumber}" />
                 </StackPanel>
 
                 <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                    <TextBlock Text="Время: " />
-                    <TextBlock Text="{Binding Countdown}" />
+                    <TextBlock FontSize="16" Text="Время: " />
+                    <TextBlock FontSize="16" Text="{Binding Countdown}" />
                 </StackPanel>
 
                 <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                    <TextBlock Text="Обратный отсчет: " />
-                    <TextBlock Text="{Binding StringCountdown, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock FontSize="16" Text="Обратный отсчет: " />
+                    <TextBlock FontSize="16" Text="{Binding StringCountdown, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
             </StackPanel>
         </Grid>
 
-        <StackPanel Grid.Row="2" Margin="15" Orientation="Horizontal">
-            <TextBlock Text="Состояние потока: " />
-            <TextBlock FontWeight="Bold" Text="{Binding CurrentThreadStat}" />
-
-            <TextBlock Margin="20,0,0,0" Text="Приоритет потока: " />
-            <TextBlock FontWeight="Bold" Text="{Binding CurrentThreadPriory}" />
-        </StackPanel>
+        <DockPanel Grid.Row="2" Margin="0,10,0,30">
+            <Separator MaxWidth="500" Background="#FF8D8D8D" DockPanel.Dock="Top" />
+            <StackPanel MaxWidth="500"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Center"
+                        DockPanel.Dock="Top"
+                        Orientation="Horizontal">
+                <TextBlock FontSize="17" Text="Повторение программы:      " />
+                <TextBlock FontSize="17" Text="{Binding CurrentRepetitions}" />
+                <TextBlock FontSize="17" Text=" из " />
+                <TextBlock FontSize="17" Text="{Binding NumberRepetitions}" />
+            </StackPanel>
+        </DockPanel>
 
         <DockPanel Grid.Row="3" Margin="10,5">
-            <Button Width="75"
-                    Height="30"
+            <Button Width="100"
+                    Height="35"
+                    Command="{Binding RunningTest}"
                     Content="Запуск"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MainButtonStyle}" 
-                    Command="{Binding RunningTest}"/>
-            <Button Width="75"
-                    Height="30"
+                    FontSize="14"
+                    Style="{StaticResource MainButtonStyle}" />
+            <Button Width="100"
+                    Height="35"
+                    Command="{Binding StopTest}"
                     Content="Стоп"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MainButtonStyle}" 
-                    Command="{Binding StopTest}"/>
-            <Button Width="75"
-                    Height="30"
+                    FontSize="14"
+                    Style="{StaticResource MainButtonStyle}" />
+            <Button Width="100"
+                    Height="35"
+                    Command="{Binding SuspendTest}"
                     Content="Пауза"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MainButtonStyle}" 
-                    Command="{Binding SuspendTest}"/>
-            <Button Width="95"
-                    Height="30"
+                    FontSize="14"
+                    Style="{StaticResource MainButtonStyle}" />
+            <Button Width="125"
+                    Height="35"
+                    Command="{Binding ResumeTest}"
                     Content="Возобновить"
                     DockPanel.Dock="Left"
-                    Style="{StaticResource MainButtonStyle}" 
-                    Command="{Binding ResumeTest}"/>
+                    FontSize="14"
+                    Style="{StaticResource MainButtonStyle}" />
         </DockPanel>
     </Grid>
 </UserControl>

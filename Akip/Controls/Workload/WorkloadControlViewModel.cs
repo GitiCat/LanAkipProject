@@ -23,6 +23,13 @@ namespace Akip
             get { return _numberRepetitions; }
             set { _numberRepetitions = value; OnPropertyChanged(nameof(NumberRepetitions)); }
         }
+
+        private int _currentRepetitions;
+        public int CurrentRepetitions
+        {
+            get { return _currentRepetitions; }
+            set { _currentRepetitions = value; }
+        }
         
         public WorkloadControlViewModel()
         {
@@ -78,11 +85,12 @@ namespace Akip
                 var elapsed = now.Subtract(_startCountdown);
                 TimeToEnd = _startTimeSpan.Subtract(elapsed);
             };
-
             
-
             StopTimer();
         }
+
+        //TODO: Приделать после залет на репит
+        private int RepetitionIndex = 1;
 
         /// <summary>
         ///     Предоставляет параметр завершения времени работы таймера
@@ -114,8 +122,19 @@ namespace Akip
                     }
                     else
                     {
-                        Request.SetSystemValue(Network, SystemCommands.LoadOff);
-                        MessageBox.Show("Программа завершена");
+                        if (RepetitionIndex != NumberRepetitions)
+                        {
+                            SelectStageIndex = 0;
+                            ChangedStage(SelectStageIndex);
+                            RepetitionIndex += 1;
+                            CurrentRepetitions = RepetitionIndex;
+                            StartTimer(DateTime.Now);
+                        }
+                        else
+                        {
+                            Request.SetSystemValue(Network, SystemCommands.LoadOff);
+                            MessageBox.Show("Программа завершена");
+                        }
                     }
                 }
 
@@ -123,14 +142,12 @@ namespace Akip
             }
         }
 
-        //TODO: Приделать после залет на репит
-        private int RepetitionIndex = 1;
-
         TimeSpan tempTime;
         double tempTimeToDouble;
 
         private void ChangedStage(int index)
         {
+            CurrentStageNumber = (SelectStageIndex + 1).ToString();
             tempTime = TimeSpan.Parse(LoadColleciton[index].T_Time);
             tempTimeToDouble = tempTime.TotalSeconds;
             _startTimeSpan = TimeSpan.FromSeconds(tempTimeToDouble);
@@ -158,7 +175,7 @@ namespace Akip
         /// <summary>
         ///     Предоставляет метод завершения работы таймера
         /// </summary>
-        private void StopTimer()
+        public void StopTimer()
         {
             if (TimerIsEnabled)
                 _timer.Stop();
@@ -174,9 +191,11 @@ namespace Akip
             _timer.Start();
         }
 
-        private void RunningNewTimer()
+        public void RunningNewTimer()
         {
             SelectStageIndex = 0;
+            RepetitionIndex = 1;
+            CurrentRepetitions = RepetitionIndex;
             ChangedStage( SelectStageIndex );
             StartTimer( DateTime.Now );
         }
