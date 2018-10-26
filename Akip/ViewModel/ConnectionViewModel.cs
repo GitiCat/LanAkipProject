@@ -4,9 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -101,6 +100,9 @@ namespace Akip
         /// </summary>
         private TcpClient ObjTcpConnect = null;
 
+        private IPEndPoint objEndPointConnect = null;
+        private IPAddress objClientIpAddress = null;
+
         /// <summary>
         ///     Объект страницы для подключения
         /// </summary>
@@ -116,30 +118,40 @@ namespace Akip
         /// <param name="port">Порт для подключения</param>
         private void ConnectionMethod(string ip, int port)
         {
-            if (ObjTcpConnect == null)
-                ObjTcpConnect = new TcpClient();
+            //if (ObjTcpConnect == null)
+            //    ObjTcpConnect = new TcpClient();
 
-            if(ObjTcpConnect.Connected) {
-                MessageBox.Show( $"Соединение с {ip} уже установлено..." );
-                return;
+            objClientIpAddress = IPAddress.Parse(ip);
+            foreach(var item in TcpClientColleciton)
+            {
+                objEndPointConnect = (IPEndPoint)item.Client.RemoteEndPoint;
+
+                if(objEndPointConnect.Address == objClientIpAddress)
+                {
+                    MessageBox.Show($"Соединение с утройством по адресу {objEndPointConnect.Address} уже произведено...",
+                        "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
             }
 
+            TcpClientColleciton.Add(new TcpClient());
+            
             try {
-                ObjTcpConnect = new TcpClient();
-                ObjTcpConnect.Connect( ip, port );
+                //ObjTcpConnect.Connect( ip, port );
+                TcpClientColleciton[TcpClientColleciton.Count - 1].Connect(ip, port);
                 
             } catch (Exception objException) {
                 MessageBox.Show( objException.ToString() );
                 return;
             } finally {
-                if (ObjTcpConnect.Connected) {
+                if (TcpClientColleciton[TcpClientColleciton.Count - 1].Connected) {
 
                     ConnectedIP.Add( new ConnectionViewModel() {
                         ConnectedIPString = ip
                     } );
 
-                    TcpClientColleciton.Add( ObjTcpConnect );
-                    NetworkStreamCollection.Add( ObjTcpConnect.GetStream() );
+                    TcpClientColleciton.Add(TcpClientColleciton[TcpClientColleciton.Count - 1]);
+                    NetworkStreamCollection.Add(TcpClientColleciton[TcpClientColleciton.Count - 1].GetStream() );
 
                     ConnectedPage.ConnectedPageCollection.Add(new ConnectedPage() {
                         Name = ip,
@@ -155,7 +167,7 @@ namespace Akip
                                     = ConnectedPage.ConnectedPageCollection[ConnectedPage.ConnectedPageCollection.IndexOf( target )].RefPage;
                             } )
                         } );
-                    Request.SetSystemValue(ObjTcpConnect.GetStream(), SystemCommands.Remote);
+                    Request.SetSystemValue(TcpClientColleciton[TcpClientColleciton.Count - 1].GetStream(), SystemCommands.Remote);
                 }
             }
         }
