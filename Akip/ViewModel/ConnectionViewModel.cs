@@ -14,6 +14,8 @@ namespace Akip
 {
     public class ConnectionViewModel : Base
     {
+        public static ConnectionViewModel Instance => new ConnectionViewModel();
+
         public string ConnectedIPString { get; set; }
         private int _connectionIPIndex;
         public int ConnectionIPIndex
@@ -29,7 +31,7 @@ namespace Akip
         /// <summary>
         ///     Предоставлят список активных подлкючений
         /// </summary>
-        private List<TcpClient> TcpClientColleciton { get; set; }
+        public List<TcpClient> TcpClientColleciton { get; set; }
         /// <summary>
         ///     Предоставляем список потоков для активных подключений
         /// </summary>
@@ -134,11 +136,12 @@ namespace Akip
                 }
             }
 
-            TcpClientColleciton.Add(new TcpClient());
+            TcpClientColleciton.Add(new TcpClient() );
             
             try {
                 //ObjTcpConnect.Connect( ip, port );
                 TcpClientColleciton[TcpClientColleciton.Count - 1].Connect(ip, port);
+                IoC.Get<CollectionViewModels>().ConnectedNetworkStream.Add( TcpClientColleciton[TcpClientColleciton.Count - 1].GetStream() );
                 
             } catch (Exception objException) {
                 MessageBox.Show( objException.ToString() );
@@ -149,10 +152,7 @@ namespace Akip
                     ConnectedIP.Add( new ConnectionViewModel() {
                         ConnectedIPString = ip
                     } );
-
-                    TcpClientColleciton.Add(TcpClientColleciton[TcpClientColleciton.Count - 1]);
-                    NetworkStreamCollection.Add(TcpClientColleciton[TcpClientColleciton.Count - 1].GetStream() );
-
+                    
                     ConnectedPage.ConnectedPageCollection.Add(new ConnectedPage() {
                         Name = ip,
                         RefPage = new PulsePage(new PulseDesignModel())
@@ -179,19 +179,15 @@ namespace Akip
         {
             if (TcpClientColleciton[ConnectionIPIndex].Connected) {
 
-                Request.SetSystemValue(NetworkStreamCollection[ConnectionIPIndex], SystemCommands.LoadOff);
-                Request.SetSystemValue(NetworkStreamCollection[ConnectionIPIndex], SystemCommands.Local);
+                Request.SetSystemValue(TcpClientColleciton[ConnectionIPIndex].GetStream(), SystemCommands.LoadOff);
+                Request.SetSystemValue(TcpClientColleciton[ConnectionIPIndex].GetStream(), SystemCommands.Local);
 
-                NetworkStreamCollection[ConnectionIPIndex].Close();
+                TcpClientColleciton[ConnectionIPIndex].GetStream().Close();
                 TcpClientColleciton[ConnectionIPIndex].Close();
                 
                 TcpClientColleciton[ConnectionIPIndex] = null;
                 TcpClientColleciton.RemoveAt( ConnectionIPIndex );
-
-                NetworkStreamCollection[ConnectionIPIndex].Dispose();
-                NetworkStreamCollection[ConnectionIPIndex] = null;
-                NetworkStreamCollection.RemoveAt( ConnectionIPIndex );
-
+                
                 ConnectedPage.ConnectedPageCollection.RemoveAt(ConnectionIPIndex);
 
                 MainViewModel.ConnectedButtonCollection.RemoveAt( ConnectionIPIndex );

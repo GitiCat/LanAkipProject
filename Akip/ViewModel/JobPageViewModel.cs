@@ -42,7 +42,7 @@ namespace Akip
             {
                 var pageObject = ConnectedPage.ConnectedPageCollection[index].RefPage.DataContext as PulseDesignModel;
                 LoadCopyCollection = pageObject.PulseCollection;
-                var netPageObject = ConnectionViewModel.NetworkStreamCollection;
+                var netPageObject = IoC.Get<CollectionViewModels>().ConnectedNetworkStream[index];
                 ProcessControlColleciton.Add(new WorkloadControlViewModel()
                 {
                     NumberLoad = (index + 1).ToString(),
@@ -51,7 +51,7 @@ namespace Akip
                     NumberRepetitions = Convert.ToInt32(pageObject.NumberRepetitions),
                     StageCount = pageObject.TotalStageCount,
                     TotalTime = pageObject.TotalTimeInTable,
-                    Network = netPageObject[index]
+                    Network = netPageObject
                 });
             }
         }

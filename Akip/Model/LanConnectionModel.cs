@@ -15,11 +15,11 @@ namespace Akip.LanConnection
             ObservableCollection<LanConnectionModel> lan_collection = new ObservableCollection<LanConnectionModel>();
 
             try {
-                for (int i = 2; i <= 20; i++) {
+                for (int i = 2; i <= 15; i++) {
 
                     IPAddress iP = IPAddress.Parse( $"192.168.0.{i}" );
 
-                    if (_TryPing( iP.ToString(), 4001, 50 )) {
+                    if (_TryPing( iP.ToString(), 4001, 100 )) {
 
                         lan_collection.Add( new LanConnectionModel() {
                             ConnectionIP = iP.ToString()
