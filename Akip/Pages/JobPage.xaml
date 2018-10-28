@@ -50,14 +50,14 @@
                     <Button Width="150"
                             Height="30"
                             Margin="0,0,5,0"
-                            Command="{Binding ProcessesInitialization, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Command="{Binding StartAllLoadProcesses, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             Content="Запуск всех процессов"
                             DockPanel.Dock="Left"
                             Style="{StaticResource MainButtonStyle}" />
                     <Button Width="170"
                             Height="30"
                             Margin="0,0,10,0"
-                            Command="{Binding ProcessesInitialization, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                            Command="{Binding StopAllLoadProcesses, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             Content="Остановка всех процессов"
                             DockPanel.Dock="Left"
                             Style="{StaticResource MainButtonStyle}" />

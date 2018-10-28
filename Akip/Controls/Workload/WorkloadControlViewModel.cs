@@ -24,11 +24,11 @@ namespace Akip
             set { _numberRepetitions = value; OnPropertyChanged(nameof(NumberRepetitions)); }
         }
 
-        private int _currentRepetitions;
-        public int CurrentRepetitions
+        private string _currentRepetitions;
+        public string CurrentRepetitions
         {
             get { return _currentRepetitions; }
-            set { _currentRepetitions = value; }
+            set { _currentRepetitions = value; OnPropertyChanged( nameof( CurrentRepetitions ) ); }
         }
         
         public WorkloadControlViewModel()
@@ -122,13 +122,14 @@ namespace Akip
                     }
                     else
                     {
-                        if (RepetitionIndex != NumberRepetitions)
+                        if (RepetitionIndex < NumberRepetitions)
                         {
                             SelectStageIndex = 0;
                             ChangedStage(SelectStageIndex);
                             RepetitionIndex += 1;
-                            CurrentRepetitions = RepetitionIndex;
-                            StartTimer(DateTime.Now);
+                            CurrentRepetitions = RepetitionIndex.ToString();
+                            Request.SetSystemValue( Network, SystemCommands.LoadOff );
+                            StartTimer( DateTime.Now );
                         }
                         else
                         {
@@ -195,7 +196,7 @@ namespace Akip
         {
             SelectStageIndex = 0;
             RepetitionIndex = 1;
-            CurrentRepetitions = RepetitionIndex;
+            CurrentRepetitions = RepetitionIndex.ToString();
             ChangedStage( SelectStageIndex );
             StartTimer( DateTime.Now );
         }
